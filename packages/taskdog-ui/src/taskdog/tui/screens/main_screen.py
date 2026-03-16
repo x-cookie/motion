@@ -128,8 +128,8 @@ class MainScreen(Screen[None]):
             if self.custom_footer:
                 self.custom_footer.update_result(len(filtered), self.state.total_count)
 
-        # Only refresh Gantt when gantt filtering is enabled
-        if self.gantt_widget and self.state and self.state.gantt_filter_enabled:
+        # Always refresh Gantt on filter changes so the title indicator updates
+        if self.gantt_widget and self.state:
             self.gantt_widget.render_filtered_gantt()
 
     def on_custom_footer_submitted(self, event: CustomFooter.Submitted) -> None:
