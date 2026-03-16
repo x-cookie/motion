@@ -5,13 +5,9 @@ like date range management and automatic resizing.
 """
 
 from datetime import date, timedelta
-from typing import TYPE_CHECKING, Any, ClassVar
-
-if TYPE_CHECKING:
-    pass
+from typing import Any
 
 from textual.app import ComposeResult
-from textual.binding import Binding
 from textual.containers import Vertical
 from textual.events import Resize
 from textual.widgets import Static
@@ -26,12 +22,11 @@ from taskdog.constants.gantt import (
 )
 from taskdog.tui.widgets.base_widget import TUIWidget
 from taskdog.tui.widgets.gantt_data_table import GanttDataTable
-from taskdog.tui.widgets.vi_navigation_mixin import ViNavigationMixin
 from taskdog.view_models.gantt_view_model import GanttViewModel
 from taskdog_core.shared.constants.time import DAYS_PER_WEEK
 
 
-class GanttWidget(Vertical, ViNavigationMixin, TUIWidget):
+class GanttWidget(Vertical, TUIWidget):
     """A widget for displaying gantt chart using GanttDataTable.
 
     This widget manages the GanttDataTable and handles date range calculations
@@ -46,18 +41,11 @@ class GanttWidget(Vertical, ViNavigationMixin, TUIWidget):
     # Allow maximize for this widget (same as TaskTable)
     allow_maximize = True
 
-    # Vi-style bindings for scrolling (delegated to gantt table)
-    BINDINGS: ClassVar[list[Binding | tuple[str, str] | tuple[str, str, str]]] = list(
-        ViNavigationMixin.VI_SCROLL_ALL_BINDINGS
-    )
-
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Initialize the gantt widget."""
         super().__init__(*args, **kwargs)
         self.can_focus = False
         self._task_ids: list[int] = []
-        # NOTE: _gantt_view_model removed - now accessed via self.app.state.gantt_cache (Step 4)
-        # NOTE: _sort_by and _reverse removed - now accessed via self.app.state (Step 2)
         self._filter_include_archived: bool = (
             False  # Include archived tasks flag for recalculation
         )
@@ -85,93 +73,24 @@ class GanttWidget(Vertical, ViNavigationMixin, TUIWidget):
         self._legend_widget = Static(self._build_legend_markup(), id="gantt-legend")
         yield self._legend_widget
 
-    # Vi-style scroll actions - delegate to gantt table
-
-    def _delegate_scroll(
-        self, method_name: str, *args: int | float | None, **kwargs: Any
-    ) -> None:
-        """Delegate a scroll action to the gantt table if available.
-
-        Args:
-            method_name: Name of the scroll method to call on _gantt_table
-            *args: Positional arguments to pass to the method
-            **kwargs: Keyword arguments to pass to the method
-        """
-        if self._gantt_table:
-            kwargs.setdefault("animate", False)
-            getattr(self._gantt_table, method_name)(*args, **kwargs)
-
-    def action_scroll_down(self) -> None:
-        """Scroll down one line."""
-        self._delegate_scroll("scroll_down")
-
-    def action_scroll_up(self) -> None:
-        """Scroll up one line."""
-        self._delegate_scroll("scroll_up")
-
-    def action_scroll_home(self) -> None:
-        """Scroll to top."""
-        self._delegate_scroll("scroll_home")
-
-    def action_scroll_end(self) -> None:
-        """Scroll to bottom."""
-        self._delegate_scroll("scroll_end")
-
-    def action_page_down(self) -> None:
-        """Scroll down half a page."""
-        self._delegate_scroll("scroll_page_down")
-
-    def action_page_up(self) -> None:
-        """Scroll up half a page."""
-        self._delegate_scroll("scroll_page_up")
-
-    def action_scroll_left(self) -> None:
-        """Scroll left by one day."""
-        if self._gantt_table:
-            self._gantt_table.scroll_x = max(
-                0, self._gantt_table.scroll_x - CHARS_PER_DAY
-            )
-
-    def action_scroll_right(self) -> None:
-        """Scroll right by one day."""
-        if self._gantt_table:
-            self._gantt_table.scroll_x = self._gantt_table.scroll_x + CHARS_PER_DAY
-
-    def action_scroll_home_horizontal(self) -> None:
-        """Scroll to leftmost position (0 key)."""
-        self._delegate_scroll("scroll_to", 0, None, animate=False)
-
-    def action_scroll_end_horizontal(self) -> None:
-        """Scroll to rightmost position ($ key)."""
-        if self._gantt_table:
-            max_x = getattr(self._gantt_table, "max_scroll_x", 0)
-            self._gantt_table.scroll_to(max_x, None, animate=False)
-
     def update_gantt(
         self,
         task_ids: list[int],
-        gantt_view_model: GanttViewModel,
-        sort_by: str = "deadline",
-        reverse: bool = False,
         include_archived: bool = False,
         keep_scroll_position: bool = False,
     ) -> None:
-        """Update the gantt chart with new gantt data.
+        """Update the gantt chart with new data from TUIState.gantt_cache.
+
+        The caller (TaskUIManager) must set TUIState.gantt_cache before calling this.
+        This widget only reads from State and renders.
 
         Args:
-            task_ids: List of task IDs (used for recalculating date range on resize)
-            gantt_view_model: Presentation-ready gantt data
-            sort_by: Sort order for tasks (kept for compatibility, value comes from app.state)
-            reverse: Sort direction (kept for compatibility, value comes from app.state)
+            task_ids: List of task IDs (used to detect if data exists on resize)
             include_archived: Include archived tasks (default: False)
             keep_scroll_position: Whether to preserve scroll position during refresh.
                                  Set to True for periodic updates to avoid scroll stuttering.
         """
         self._task_ids = task_ids
-        # Store gantt view model in app state (Step 4)
-        self.tui_state.gantt_cache = gantt_view_model
-        # NOTE: sort_by and reverse parameters kept for API compatibility,
-        # but actual values are read from self.tui_state
         self._filter_include_archived = include_archived
         self._keep_scroll_position = keep_scroll_position
         self._render_gantt()
@@ -457,21 +376,16 @@ class GanttWidget(Vertical, ViNavigationMixin, TUIWidget):
         # Access sort state from tui_state (single source of truth)
         return self.tui_state.sort_by
 
-    def update_view_model_and_render(
-        self, gantt_view_model: GanttViewModel, keep_scroll_position: bool = False
-    ) -> None:
-        """Update gantt view model and trigger re-render.
+    def update_view_model_and_render(self, keep_scroll_position: bool = False) -> None:
+        """Re-render gantt from TUIState.gantt_cache.
 
-        This method updates the internal view model and schedules a re-render
-        after the next refresh cycle.
+        The caller (TaskUIManager) must update TUIState.gantt_cache before calling this.
+        This widget only reads from State and renders.
 
         Args:
-            gantt_view_model: New GanttViewModel to display
             keep_scroll_position: Whether to preserve scroll position during refresh.
                                  Set to True for periodic updates to avoid scroll stuttering.
         """
-        # Store in app state (Step 4)
-        self.tui_state.gantt_cache = gantt_view_model
         self._keep_scroll_position = keep_scroll_position
         self.call_after_refresh(self._render_gantt)
 
