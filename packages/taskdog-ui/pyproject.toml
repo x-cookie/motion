@@ -8,6 +8,14 @@ authors = [
     { name = "Kohei Wada" }
 ]
 license = { text = "MIT" }
+keywords = ["task", "management", "cli", "tui"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
 
 dependencies = [
     "taskdog-core==0.18.1",
@@ -33,6 +41,11 @@ server = [
 
 [project.scripts]
 taskdog = "taskdog.cli_main:cli"
+
+[project.urls]
+Homepage = "https://github.com/Kohei-Wada/taskdog"
+Repository = "https://github.com/Kohei-Wada/taskdog"
+"Bug Tracker" = "https://github.com/Kohei-Wada/taskdog/issues"
 
 [build-system]
 requires = ["setuptools>=68.0.0", "wheel"]
