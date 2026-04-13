@@ -4,9 +4,9 @@ from datetime import datetime
 from unittest.mock import Mock, patch
 
 import pytest
-from taskdog_client.task_client import TaskClient
+from motion_client.task_client import TaskClient
 
-from taskdog_core.domain.entities.task import TaskStatus
+from motion_core.domain.entities.task import TaskStatus
 
 
 class TestTaskClient:
@@ -18,7 +18,7 @@ class TestTaskClient:
         self.mock_base = Mock()
         self.client = TaskClient(self.mock_base)
 
-    @patch("taskdog_client.task_client.convert_to_task_operation_output")
+    @patch("motion_client.task_client.convert_to_task_operation_output")
     def test_create_task(self, mock_convert):
         """Test create_task makes correct API call."""
         self.mock_base._request_json.return_value = {"id": 1, "name": "Test"}
@@ -91,7 +91,7 @@ class TestTaskClient:
         assert "priority" not in payload
         assert "status" not in payload
 
-    @patch("taskdog_client.task_client.convert_to_update_task_output")
+    @patch("motion_client.task_client.convert_to_update_task_output")
     def test_update_task(self, mock_convert):
         """Test update_task makes correct API call."""
         self.mock_base._request_json.return_value = {"id": 1}

@@ -4,9 +4,9 @@ from unittest.mock import Mock
 
 import pytest
 
-from taskdog_core.application.validators.status_validator import StatusValidator
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.domain.exceptions.task_exceptions import (
+from motion_core.application.validators.status_validator import StatusValidator
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.exceptions.task_exceptions import (
     DependencyNotMetError,
     TaskAlreadyFinishedError,
     TaskAlreadyInProgressError,

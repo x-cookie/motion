@@ -15,9 +15,9 @@ from datetime import date
 
 from sqlalchemy import func, select
 
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_core.infrastructure.persistence.database.models import TaskModel
-from taskdog_core.infrastructure.persistence.database.query_builders import (
+from motion_core.domain.entities.task import TaskStatus
+from motion_core.infrastructure.persistence.database.models import TaskModel
+from motion_core.infrastructure.persistence.database.query_builders import (
     TaskQueryBuilder,
 )
 

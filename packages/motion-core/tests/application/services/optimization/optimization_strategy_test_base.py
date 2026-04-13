@@ -4,11 +4,11 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.dto.create_task_input import CreateTaskInput
-from taskdog_core.application.dto.optimize_schedule_input import OptimizeScheduleInput
-from taskdog_core.application.use_cases.create_task import CreateTaskUseCase
-from taskdog_core.application.use_cases.optimize_schedule import OptimizeScheduleUseCase
-from taskdog_core.domain.entities.task import Task
+from motion_core.application.dto.create_task_input import CreateTaskInput
+from motion_core.application.dto.optimize_schedule_input import OptimizeScheduleInput
+from motion_core.application.use_cases.create_task import CreateTaskUseCase
+from motion_core.application.use_cases.optimize_schedule import OptimizeScheduleUseCase
+from motion_core.domain.entities.task import Task
 
 
 class BaseOptimizationStrategyTest:

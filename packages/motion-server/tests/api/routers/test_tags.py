@@ -1,6 +1,6 @@
 """Tests for tags router (tag management)."""
 
-from taskdog_core.domain.entities.task import TaskStatus
+from motion_core.domain.entities.task import TaskStatus
 
 
 class TestTagsRouter:

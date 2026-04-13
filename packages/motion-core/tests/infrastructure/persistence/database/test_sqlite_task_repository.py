@@ -5,12 +5,12 @@ from pathlib import Path
 
 import pytest
 
-from taskdog_core.domain.constants import MAX_TAGS_PER_TASK
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.infrastructure.persistence.database.sqlite_task_repository import (
+from motion_core.domain.constants import MAX_TAGS_PER_TASK
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.infrastructure.persistence.database.sqlite_task_repository import (
     SqliteTaskRepository,
 )
-from taskdog_core.infrastructure.persistence.mappers.task_db_mapper import TaskDbMapper
+from motion_core.infrastructure.persistence.mappers.task_db_mapper import TaskDbMapper
 
 
 class TestSqliteTaskRepository:
@@ -386,7 +386,7 @@ class TestSqliteTaskRepository:
         # Create a task with tags in a session
         with self.repository.Session() as session:
             # Manually create a task with tags using session
-            from taskdog_core.infrastructure.persistence.database.models import (
+            from motion_core.infrastructure.persistence.database.models import (
                 TagModel,
                 TaskModel,
             )
@@ -417,7 +417,7 @@ class TestSqliteTaskRepository:
         with self.repository.Session() as session:
             from sqlalchemy import select
 
-            from taskdog_core.infrastructure.persistence.database.models import TagModel
+            from motion_core.infrastructure.persistence.database.models import TagModel
 
             stmt = select(TagModel).where(
                 TagModel.name.in_(["rollback-test-1", "rollback-test-2"])
@@ -440,7 +440,7 @@ class TestSqliteTaskRepository:
         # Simulate failed update by causing an error
         try:
             with self.repository.Session() as session:
-                from taskdog_core.infrastructure.persistence.database.models import (
+                from motion_core.infrastructure.persistence.database.models import (
                     TaskModel,
                 )
 
@@ -513,7 +513,7 @@ class TestSqliteTaskRepository:
         with self.repository.Session() as session:
             from sqlalchemy import select
 
-            from taskdog_core.infrastructure.persistence.database.models import TagModel
+            from motion_core.infrastructure.persistence.database.models import TagModel
 
             stmt = select(TagModel).where(TagModel.name == "shared-tag")
             tag_models = session.scalars(stmt).all()
@@ -729,7 +729,7 @@ class TestSqliteTaskRepository:
         """Test save() writes daily_allocations to both JSON and normalized table."""
         from sqlalchemy import select
 
-        from taskdog_core.infrastructure.persistence.database.models import (
+        from motion_core.infrastructure.persistence.database.models import (
             DailyAllocationModel,
         )
 
@@ -763,7 +763,7 @@ class TestSqliteTaskRepository:
         """Test save_all() writes daily_allocations to normalized table for all tasks."""
         from sqlalchemy import select
 
-        from taskdog_core.infrastructure.persistence.database.models import (
+        from motion_core.infrastructure.persistence.database.models import (
             DailyAllocationModel,
         )
 
@@ -798,7 +798,7 @@ class TestSqliteTaskRepository:
         """Test create() writes daily_allocations to normalized table."""
         from sqlalchemy import select
 
-        from taskdog_core.infrastructure.persistence.database.models import (
+        from motion_core.infrastructure.persistence.database.models import (
             DailyAllocationModel,
         )
 
@@ -823,7 +823,7 @@ class TestSqliteTaskRepository:
         """Test updating task replaces allocations in normalized table."""
         from sqlalchemy import select
 
-        from taskdog_core.infrastructure.persistence.database.models import (
+        from motion_core.infrastructure.persistence.database.models import (
             DailyAllocationModel,
         )
 
@@ -855,7 +855,7 @@ class TestSqliteTaskRepository:
         """Test deleting task also deletes normalized allocations (CASCADE)."""
         from sqlalchemy import select
 
-        from taskdog_core.infrastructure.persistence.database.models import (
+        from motion_core.infrastructure.persistence.database.models import (
             DailyAllocationModel,
         )
 

@@ -4,8 +4,8 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.services.task_status_service import TaskStatusService
-from taskdog_core.domain.entities.task import TaskStatus
+from motion_core.application.services.task_status_service import TaskStatusService
+from motion_core.domain.entities.task import TaskStatus
 
 
 class TestTaskStatusService:

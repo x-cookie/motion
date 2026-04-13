@@ -2,14 +2,14 @@
 
 from datetime import date, datetime
 
-from taskdog_core.application.services.optimization.allocation_helpers import (
+from motion_core.application.services.optimization.allocation_helpers import (
     SCHEDULE_END_TIME,
     SCHEDULE_START_TIME,
     calculate_available_hours,
     prepare_task_for_allocation,
     set_planned_times,
 )
-from taskdog_core.domain.entities.task import Task
+from motion_core.domain.entities.task import Task
 
 
 class TestOptimizationStrategyHelpers:

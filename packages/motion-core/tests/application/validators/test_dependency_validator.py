@@ -4,9 +4,9 @@ from unittest.mock import Mock
 
 import pytest
 
-from taskdog_core.application.validators.dependency_validator import DependencyValidator
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.domain.exceptions.task_exceptions import DependencyNotMetError
+from motion_core.application.validators.dependency_validator import DependencyValidator
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.exceptions.task_exceptions import DependencyNotMetError
 
 
 class TestDependencyValidator:

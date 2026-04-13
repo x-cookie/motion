@@ -2,34 +2,34 @@
 
 import pytest
 
-from taskdog_core.application.services.optimization.backward_optimization_strategy import (
+from motion_core.application.services.optimization.backward_optimization_strategy import (
     BackwardOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.balanced_optimization_strategy import (
+from motion_core.application.services.optimization.balanced_optimization_strategy import (
     BalancedOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.dependency_aware_optimization_strategy import (
+from motion_core.application.services.optimization.dependency_aware_optimization_strategy import (
     DependencyAwareOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.earliest_deadline_optimization_strategy import (
+from motion_core.application.services.optimization.earliest_deadline_optimization_strategy import (
     EarliestDeadlineOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.genetic_optimization_strategy import (
+from motion_core.application.services.optimization.genetic_optimization_strategy import (
     GeneticOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.greedy_optimization_strategy import (
+from motion_core.application.services.optimization.greedy_optimization_strategy import (
     GreedyOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.monte_carlo_optimization_strategy import (
+from motion_core.application.services.optimization.monte_carlo_optimization_strategy import (
     MonteCarloOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.priority_first_optimization_strategy import (
+from motion_core.application.services.optimization.priority_first_optimization_strategy import (
     PriorityFirstOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.round_robin_optimization_strategy import (
+from motion_core.application.services.optimization.round_robin_optimization_strategy import (
     RoundRobinOptimizationStrategy,
 )
-from taskdog_core.application.services.optimization.strategy_factory import (
+from motion_core.application.services.optimization.strategy_factory import (
     StrategyFactory,
 )
 

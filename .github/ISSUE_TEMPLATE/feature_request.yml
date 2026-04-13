@@ -42,7 +42,7 @@ body:
       description: Provide examples of how this feature would work
       placeholder: |
         ```bash
-        taskdog export --format json
+        motion export --format json
         ```
     validations:
       required: false

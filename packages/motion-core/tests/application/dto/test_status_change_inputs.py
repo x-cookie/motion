@@ -5,7 +5,7 @@ These tests verify that SingleTaskInput works correctly for all status
 change scenarios (start, complete, pause, cancel, reopen).
 """
 
-from taskdog_core.application.dto.base import SingleTaskInput
+from motion_core.application.dto.base import SingleTaskInput
 
 
 class TestStatusChangeInputs:

@@ -5,11 +5,11 @@ from unittest.mock import Mock
 
 import pytest
 
-from taskdog_core.application.dto.statistics_output import CalculateStatisticsInput
-from taskdog_core.application.use_cases.calculate_statistics import (
+from motion_core.application.dto.statistics_output import CalculateStatisticsInput
+from motion_core.application.use_cases.calculate_statistics import (
     CalculateStatisticsUseCase,
 )
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestCalculateStatisticsUseCase:

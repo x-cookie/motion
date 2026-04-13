@@ -4,12 +4,12 @@ from pathlib import Path
 
 from sqlalchemy import create_engine, inspect, text
 
-from taskdog_core.infrastructure.persistence.database.migration_runner import (
+from motion_core.infrastructure.persistence.database.migration_runner import (
     get_current_revision,
     get_migrations_dir,
     run_migrations,
 )
-from taskdog_core.infrastructure.persistence.database.models.task_model import Base
+from motion_core.infrastructure.persistence.database.models.task_model import Base
 
 
 class TestGetMigrationsDir:

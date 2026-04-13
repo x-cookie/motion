@@ -3,7 +3,7 @@
 from unittest.mock import Mock, patch
 
 import pytest
-from taskdog_client.relationship_client import RelationshipClient
+from motion_client.relationship_client import RelationshipClient
 
 
 class TestRelationshipClient:
@@ -35,7 +35,7 @@ class TestRelationshipClient:
         ],
         ids=["add_dependency", "set_task_tags"],
     )
-    @patch("taskdog_client.relationship_client.convert_to_task_operation_output")
+    @patch("motion_client.relationship_client.convert_to_task_operation_output")
     def test_relationship_operation_with_payload(
         self,
         mock_convert,
@@ -61,7 +61,7 @@ class TestRelationshipClient:
         assert call_args[1]["json"] == expected_json
         assert result == mock_output
 
-    @patch("taskdog_client.relationship_client.convert_to_task_operation_output")
+    @patch("motion_client.relationship_client.convert_to_task_operation_output")
     def test_remove_dependency(self, mock_convert):
         """Test remove_dependency makes correct API call."""
         self.mock_base._request_json.return_value = {"id": 1}

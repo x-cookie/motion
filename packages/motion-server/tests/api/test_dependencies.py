@@ -8,8 +8,8 @@ from unittest.mock import MagicMock, patch
 import pytest
 from fastapi import FastAPI
 
-from taskdog_server.api.context import ApiContext
-from taskdog_server.api.dependencies import (
+from motion_server.api.context import ApiContext
+from motion_server.api.dependencies import (
     get_analytics_controller,
     get_api_context,
     get_connection_manager,
@@ -68,7 +68,7 @@ class TestDependencyInjection:
         try:
             # Mock XDG config path to use our temp file
             with patch(
-                "taskdog_core.shared.xdg_utils.XDGDirectories.get_config_file",
+                "motion_core.shared.xdg_utils.XDGDirectories.get_config_file",
                 return_value=Path(config_path),
             ):
                 # Act
@@ -273,7 +273,7 @@ class TestInitializeApiContext:
         context = None
         try:
             with patch(
-                "taskdog_core.shared.xdg_utils.XDGDirectories.get_config_file",
+                "motion_core.shared.xdg_utils.XDGDirectories.get_config_file",
                 return_value=Path(config_path),
             ):
                 # Act
@@ -305,7 +305,7 @@ class TestInitializeApiContext:
         context = None
         try:
             with patch(
-                "taskdog_core.shared.xdg_utils.XDGDirectories.get_config_file",
+                "motion_core.shared.xdg_utils.XDGDirectories.get_config_file",
                 return_value=Path(config_path),
             ):
                 # Act
@@ -333,7 +333,7 @@ class TestInitializeApiContext:
         context = None
         try:
             with patch(
-                "taskdog_core.shared.xdg_utils.XDGDirectories.get_config_file",
+                "motion_core.shared.xdg_utils.XDGDirectories.get_config_file",
                 return_value=Path(config_path),
             ):
                 # Act - should not raise exception

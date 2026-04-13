@@ -4,8 +4,8 @@ from datetime import date, datetime
 
 import pytest
 
-from taskdog_core.application.queries.filters.date_range_filter import DateRangeFilter
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.application.queries.filters.date_range_filter import DateRangeFilter
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestDateRangeFilter:

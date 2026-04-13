@@ -1,6 +1,6 @@
 """Tests for SingleTaskInput."""
 
-from taskdog_core.application.dto.base import SingleTaskInput
+from motion_core.application.dto.base import SingleTaskInput
 
 
 class TestSingleTaskInput:

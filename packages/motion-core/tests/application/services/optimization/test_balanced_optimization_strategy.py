@@ -2,12 +2,12 @@
 
 from datetime import date, datetime
 
-from taskdog_core.application.dto.optimize_params import OptimizeParams
-from taskdog_core.application.services.optimization.balanced_optimization_strategy import (
+from motion_core.application.dto.optimize_params import OptimizeParams
+from motion_core.application.services.optimization.balanced_optimization_strategy import (
     BalancedOptimizationStrategy,
 )
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.domain.services.holiday_checker import IHolidayChecker
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.services.holiday_checker import IHolidayChecker
 from tests.application.services.optimization.optimization_strategy_test_base import (
     BaseOptimizationStrategyTest,
 )

@@ -4,12 +4,12 @@ from unittest.mock import MagicMock, Mock
 
 import pytest
 
-from taskdog_core.controllers.task_relationship_controller import (
+from motion_core.controllers.task_relationship_controller import (
     TaskRelationshipController,
 )
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.domain.services.logger import Logger
-from taskdog_core.infrastructure.persistence.database.sqlite_task_repository import (
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.services.logger import Logger
+from motion_core.infrastructure.persistence.database.sqlite_task_repository import (
     SqliteTaskRepository,
 )
 

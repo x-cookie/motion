@@ -2,7 +2,7 @@
 
 from datetime import date, datetime, timedelta
 
-from taskdog_core.domain.services.time_provider import ITimeProvider
+from motion_core.domain.services.time_provider import ITimeProvider
 
 
 class FakeTimeProvider(ITimeProvider):

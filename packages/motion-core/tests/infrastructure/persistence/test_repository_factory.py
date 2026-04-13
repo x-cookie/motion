@@ -4,11 +4,11 @@ from pathlib import Path
 
 import pytest
 
-from taskdog_core.infrastructure.persistence.database.sqlite_task_repository import (
+from motion_core.infrastructure.persistence.database.sqlite_task_repository import (
     SqliteTaskRepository,
 )
-from taskdog_core.infrastructure.persistence.repository_factory import RepositoryFactory
-from taskdog_core.shared.config_manager import StorageConfig
+from motion_core.infrastructure.persistence.repository_factory import RepositoryFactory
+from motion_core.shared.config_manager import StorageConfig
 
 
 class TestRepositoryFactory:

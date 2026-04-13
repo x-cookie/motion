@@ -65,9 +65,9 @@ Please delete options that are not relevant.
 
 Please check all that apply:
 
-- [ ] taskdog-core
-- [ ] taskdog-server
-- [ ] taskdog-ui
+- [ ] motion-core
+- [ ] motion-server
+- [ ] motion-ui
 - [ ] Multiple packages
 - [ ] Documentation only
 

@@ -6,9 +6,9 @@ import pytest
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import sessionmaker
 
-from taskdog_core.infrastructure.persistence.database.models import TaskModel
-from taskdog_core.infrastructure.persistence.database.models.task_model import Base
-from taskdog_core.infrastructure.persistence.database.mutation_builders import (
+from motion_core.infrastructure.persistence.database.models import TaskModel
+from motion_core.infrastructure.persistence.database.models.task_model import Base
+from motion_core.infrastructure.persistence.database.mutation_builders import (
     TaskDeleteBuilder,
 )
 

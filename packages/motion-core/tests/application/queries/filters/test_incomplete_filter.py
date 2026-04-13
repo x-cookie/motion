@@ -2,8 +2,8 @@
 
 import pytest
 
-from taskdog_core.application.queries.filters.incomplete_filter import IncompleteFilter
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.application.queries.filters.incomplete_filter import IncompleteFilter
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestIncompleteFilter:

@@ -2,14 +2,14 @@
 
 import pytest
 
-from taskdog_core.domain.constants import (
+from motion_core.domain.constants import (
     MAX_TAG_LENGTH,
     MAX_TAGS_PER_TASK,
     MAX_TASK_NAME_LENGTH,
 )
-from taskdog_core.domain.entities.task import Task
-from taskdog_core.domain.exceptions.task_exceptions import TaskValidationError
-from taskdog_core.infrastructure.persistence.mappers.task_db_mapper import TaskDbMapper
+from motion_core.domain.entities.task import Task
+from motion_core.domain.exceptions.task_exceptions import TaskValidationError
+from motion_core.infrastructure.persistence.mappers.task_db_mapper import TaskDbMapper
 
 
 class TestTaskValidation:

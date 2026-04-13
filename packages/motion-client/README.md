@@ -1,22 +1,22 @@
-# taskdog-client
+# motion-client
 
-HTTP API client library for Taskdog server.
+HTTP API client library for Motion server.
 
 ## Overview
 
-This package provides a type-safe HTTP client for communicating with the Taskdog API server. It handles authentication, error mapping, and response conversion to domain DTOs.
+This package provides a type-safe HTTP client for communicating with the Motion API server. It handles authentication, error mapping, and response conversion to domain DTOs.
 
 **Use cases:**
 
 - Building custom CLI tools
-- Integrating Taskdog with other systems
+- Integrating Motion with other systems
 - Creating automated workflows
 - Testing API endpoints
 
 ## Installation
 
 ```bash
-pip install taskdog-client
+pip install motion-client
 ```
 
 For development:
@@ -41,7 +41,7 @@ pip install -e ".[dev]"
 ## Usage Example
 
 ```python
-from taskdog_client import TaskClient, LifecycleClient, QueryClient
+from motion_client import TaskClient, LifecycleClient, QueryClient
 
 # Create clients
 base_url = "http://127.0.0.1:8000"
@@ -74,10 +74,10 @@ lifecycle_client.complete_task(task.id)
 
 ## Error Handling
 
-Clients raise exceptions from `taskdog_core.domain.exceptions`:
+Clients raise exceptions from `motion_core.domain.exceptions`:
 
 ```python
-from taskdog_core.domain.exceptions import TaskNotFoundException, TaskValidationError
+from motion_core.domain.exceptions import TaskNotFoundException, TaskValidationError
 
 try:
     task_client.get_task(999)
@@ -92,7 +92,7 @@ except TaskValidationError as e:
 Clients accept optional configuration:
 
 ```python
-from taskdog_client import TaskClient
+from motion_client import TaskClient
 
 # Basic usage (no auth)
 client = TaskClient("http://127.0.0.1:8000")
@@ -112,15 +112,15 @@ client = TaskClient(
 
 ## Dependencies
 
-- `taskdog-core`: Domain DTOs and exceptions
+- `motion-core`: Domain DTOs and exceptions
 - `httpx`: HTTP client library
 
 ## Related Packages
 
-- [taskdog-core](../taskdog-core/): Domain DTOs used by this package
-- [taskdog-server](../taskdog-server/): API server this client connects to
-- [taskdog-ui](../taskdog-ui/): CLI/TUI that uses this client
-- [taskdog-mcp](../taskdog-mcp/): MCP server that uses this client
+- [motion-core](../motion-core/): Domain DTOs used by this package
+- [motion-server](../motion-server/): API server this client connects to
+- [motion-ui](../motion-ui/): CLI/TUI that uses this client
+- [motion-mcp](../motion-mcp/): MCP server that uses this client
 
 ## Testing
 

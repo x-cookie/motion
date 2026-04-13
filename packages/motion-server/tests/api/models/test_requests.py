@@ -5,8 +5,8 @@ from datetime import datetime
 import pytest
 from pydantic import ValidationError
 
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_server.api.models.requests import (
+from motion_core.domain.entities.task import TaskStatus
+from motion_server.api.models.requests import (
     AddDependencyRequest,
     CreateTaskRequest,
     OptimizeScheduleRequest,

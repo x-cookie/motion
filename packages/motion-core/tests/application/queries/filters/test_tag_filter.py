@@ -2,8 +2,8 @@
 
 import pytest
 
-from taskdog_core.application.queries.filters.tag_filter import TagFilter
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.application.queries.filters.tag_filter import TagFilter
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestTagFilter:

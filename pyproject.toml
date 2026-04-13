@@ -1,7 +1,7 @@
 [project]
-name = "taskdog-workspace"
+name = "motion-workspace"
 version = "0.18.5"
-description = "Taskdog monorepo workspace"
+description = "Motion monorepo workspace"
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [
@@ -25,19 +25,19 @@ dev = [
 # UV workspace configuration
 [tool.uv.workspace]
 members = [
-    "packages/taskdog-core",
-    "packages/taskdog-client",
-    "packages/taskdog-server",
-    "packages/taskdog-ui",
-    "packages/taskdog-mcp",
+    "packages/motion-core",
+    "packages/motion-client",
+    "packages/motion-server",
+    "packages/motion-ui",
+    "packages/motion-mcp",
 ]
 
 [tool.uv.sources]
-taskdog-core = { workspace = true }
-taskdog-client = { workspace = true }
-taskdog-server = { workspace = true }
-taskdog-ui = { workspace = true }
-taskdog-mcp = { workspace = true }
+motion-core = { workspace = true }
+motion-client = { workspace = true }
+motion-server = { workspace = true }
+motion-ui = { workspace = true }
+motion-mcp = { workspace = true }
 
 # mypy configuration
 [tool.mypy]
@@ -124,15 +124,15 @@ ignore = [
 
 # Per-file ignores
 [tool.ruff.lint.per-file-ignores]
-"packages/taskdog-core/src/taskdog_core/domain/exceptions/task_exceptions.py" = [
+"packages/motion-core/src/motion_core/domain/exceptions/task_exceptions.py" = [
   "N818",
 ]  # TaskNotFoundException is widely used
-"packages/taskdog-core/src/taskdog_core/domain/exceptions/tag_exceptions.py" = [
+"packages/motion-core/src/motion_core/domain/exceptions/tag_exceptions.py" = [
   "N818",
 ]  # TagNotFoundException matches TaskNotFoundException naming convention
 "packages/*/tests/**/*.py" = ["SIM115", "RUF015"]  # Test code patterns are acceptable
 "scripts/**/*.py" = ["B904", "C901"]  # Migration scripts: exception chaining and complexity acceptable
-"packages/taskdog-server/src/taskdog_server/api/error_handlers.py" = ["UP047"]  # Type parameters require Python 3.12+
+"packages/motion-server/src/motion_server/api/error_handlers.py" = ["UP047"]  # Type parameters require Python 3.12+
 
 [tool.ruff.lint.flake8-type-checking]
 runtime-evaluated-base-classes = ["pydantic.BaseModel"]
@@ -142,9 +142,9 @@ max-complexity = 10
 
 [tool.ruff.lint.isort]
 known-first-party = [
-  "taskdog",
-  "taskdog_core",
-  "taskdog_server",
+  "motion",
+  "motion_core",
+  "motion_server",
 ]
 section-order = [
   "future",

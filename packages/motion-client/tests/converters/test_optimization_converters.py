@@ -1,6 +1,6 @@
 """Tests for optimization converter functions."""
 
-from taskdog_client.converters.optimization_converters import (
+from motion_client.converters.optimization_converters import (
     _parse_optimization_summary,
     _parse_scheduling_failures,
     convert_to_optimization_output,

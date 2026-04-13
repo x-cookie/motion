@@ -6,20 +6,20 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from taskdog_core.controllers.audit_log_controller import AuditLogController
-from taskdog_core.controllers.bulk_task_controller import BulkTaskController
-from taskdog_core.controllers.query_controller import QueryController
-from taskdog_core.controllers.task_analytics_controller import TaskAnalyticsController
-from taskdog_core.controllers.task_crud_controller import TaskCrudController
-from taskdog_core.controllers.task_lifecycle_controller import TaskLifecycleController
-from taskdog_core.controllers.task_relationship_controller import (
+from motion_core.controllers.audit_log_controller import AuditLogController
+from motion_core.controllers.bulk_task_controller import BulkTaskController
+from motion_core.controllers.query_controller import QueryController
+from motion_core.controllers.task_analytics_controller import TaskAnalyticsController
+from motion_core.controllers.task_crud_controller import TaskCrudController
+from motion_core.controllers.task_lifecycle_controller import TaskLifecycleController
+from motion_core.controllers.task_relationship_controller import (
     TaskRelationshipController,
 )
-from taskdog_core.domain.services.logger import Logger
-from taskdog_core.infrastructure.time_provider import SystemTimeProvider
-from taskdog_server import __version__
-from taskdog_server.api.context import ApiContext
-from taskdog_server.websocket.connection_manager import ConnectionManager
+from motion_core.domain.services.logger import Logger
+from motion_core.infrastructure.time_provider import SystemTimeProvider
+from motion_server import __version__
+from motion_server.api.context import ApiContext
+from motion_server.websocket.connection_manager import ConnectionManager
 
 
 class TestApp:
@@ -79,7 +79,7 @@ class TestApp:
         )
 
         # Create app using create_app (lifespan will set its own context)
-        from taskdog_server.api.app import create_app
+        from motion_server.api.app import create_app
 
         self.app = create_app()
 
@@ -155,7 +155,7 @@ class TestAppWithoutContext:
 
     def test_endpoints_fail_without_context(self):
         """Test that endpoints fail gracefully when context is not initialized."""
-        from taskdog_server.api.routers import tasks_router
+        from motion_server.api.routers import tasks_router
 
         # Create app WITHOUT setting app.state.api_context
         app = FastAPI()

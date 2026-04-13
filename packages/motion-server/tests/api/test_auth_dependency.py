@@ -3,11 +3,11 @@
 import pytest
 from fastapi import HTTPException
 
-from taskdog_server.api.dependencies import (
+from motion_server.api.dependencies import (
     get_authenticated_client,
     validate_api_key_for_websocket,
 )
-from taskdog_server.config.server_config_manager import (
+from motion_server.config.server_config_manager import (
     ApiKeyEntry,
     AuthConfig,
     ServerConfig,

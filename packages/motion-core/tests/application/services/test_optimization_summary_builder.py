@@ -4,10 +4,10 @@ from datetime import date, datetime
 
 import pytest
 
-from taskdog_core.application.services.optimization_summary_builder import (
+from motion_core.application.services.optimization_summary_builder import (
     OptimizationSummaryBuilder,
 )
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestOptimizationSummaryBuilder:

@@ -1,10 +1,10 @@
-# taskdog-server
+# motion-server
 
-FastAPI server for Taskdog task management system.
+FastAPI server for Motion task management system.
 
 ## Overview
 
-This package provides a REST API for all Taskdog functionality including:
+This package provides a REST API for all Motion functionality including:
 
 - Task CRUD operations
 - Task lifecycle management (start, complete, pause, cancel, reopen)
@@ -17,7 +17,7 @@ This package provides a REST API for all Taskdog functionality including:
 ## Installation
 
 ```bash
-pip install taskdog-server
+pip install motion-server
 ```
 
 For development:
@@ -31,19 +31,19 @@ pip install -e ".[dev]"
 Start the server:
 
 ```bash
-taskdog-server
+motion-server
 ```
 
 With custom options:
 
 ```bash
-taskdog-server --host 0.0.0.0 --port 3000
+motion-server --host 0.0.0.0 --port 3000
 ```
 
 Development mode with auto-reload:
 
 ```bash
-taskdog-server --reload
+motion-server --reload
 ```
 
 ## API Documentation
@@ -58,7 +58,7 @@ For complete API reference, see [docs/API.md](../../docs/API.md).
 
 ## Authentication
 
-Configure API key authentication in `~/.config/taskdog/server.toml`:
+Configure API key authentication in `~/.config/motion/server.toml`:
 
 ```toml
 [auth]
@@ -102,7 +102,7 @@ ws.onmessage = (event) => {
 
 ## Configuration
 
-Server configuration: `~/.config/taskdog/server.toml`
+Server configuration: `~/.config/motion/server.toml`
 
 ```toml
 [auth]
@@ -116,7 +116,7 @@ key = "your-secret-key"
 enabled = false
 ```
 
-Core configuration: `~/.config/taskdog/core.toml`
+Core configuration: `~/.config/motion/core.toml`
 
 ```toml
 [region]
@@ -132,7 +132,7 @@ The server uses:
 - **FastAPI**: Modern, fast web framework
 - **Pydantic**: Data validation with type hints
 - **uvicorn**: ASGI server
-- **taskdog-core**: Core business logic and infrastructure
+- **motion-core**: Core business logic and infrastructure
 
 ### API Routers
 
@@ -153,10 +153,10 @@ CrudControllerDep = Annotated[TaskCrudController, Depends(get_crud_controller)]
 
 ## Related Packages
 
-- [taskdog-core](../taskdog-core/): Core business logic used by this package
-- [taskdog-ui](../taskdog-ui/): CLI and TUI interfaces connecting to this server
-- [taskdog-client](../taskdog-client/): HTTP client library for API access
-- [taskdog-mcp](../taskdog-mcp/): MCP server for Claude Desktop integration
+- [motion-core](../motion-core/): Core business logic used by this package
+- [motion-ui](../motion-ui/): CLI and TUI interfaces connecting to this server
+- [motion-client](../motion-client/): HTTP client library for API access
+- [motion-mcp](../motion-mcp/): MCP server for Claude Desktop integration
 
 ## Testing
 
@@ -169,15 +169,15 @@ pytest tests/
 ### Systemd (Linux)
 
 ```bash
-systemctl --user start taskdog-server
-systemctl --user enable taskdog-server
+systemctl --user start motion-server
+systemctl --user enable motion-server
 ```
 
 ### Docker
 
 ```bash
-docker pull ghcr.io/kohei-wada/taskdog-server:main
-docker run -d -p 8000:8000 -v taskdog-data:/data ghcr.io/kohei-wada/taskdog-server:main
+docker pull ghcr.io/kohei-wada/motion-server:main
+docker run -d -p 8000:8000 -v motion-data:/data ghcr.io/kohei-wada/motion-server:main
 ```
 
 See [contrib/README.md](../../contrib/README.md) for deployment details.

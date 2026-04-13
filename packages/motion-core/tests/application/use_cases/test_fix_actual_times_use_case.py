@@ -4,9 +4,9 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.dto.fix_actual_times_input import FixActualTimesInput
-from taskdog_core.application.use_cases.fix_actual_times import FixActualTimesUseCase
-from taskdog_core.domain.exceptions.task_exceptions import (
+from motion_core.application.dto.fix_actual_times_input import FixActualTimesInput
+from motion_core.application.use_cases.fix_actual_times import FixActualTimesUseCase
+from motion_core.domain.exceptions.task_exceptions import (
     TaskNotFoundException,
     TaskValidationError,
 )

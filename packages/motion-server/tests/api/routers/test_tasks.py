@@ -4,8 +4,8 @@ from datetime import date, datetime, timedelta
 
 import pytest
 
-from taskdog_core.application.dto.audit_log_dto import AuditQuery
-from taskdog_core.domain.entities.task import TaskStatus
+from motion_core.application.dto.audit_log_dto import AuditQuery
+from motion_core.domain.entities.task import TaskStatus
 
 
 class TestTasksRouter:

@@ -6,7 +6,7 @@ import pytest
 from starlette.testclient import TestClient
 from starlette.websockets import WebSocketDisconnect
 
-from taskdog_server.config.server_config_manager import (
+from motion_server.config.server_config_manager import (
     AuthConfig,
     ServerConfig,
 )

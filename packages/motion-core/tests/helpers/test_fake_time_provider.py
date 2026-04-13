@@ -103,7 +103,7 @@ class TestFakeTimeProvider:
 
     def test_implements_interface(self):
         """Test that FakeTimeProvider implements ITimeProvider interface."""
-        from taskdog_core.domain.services.time_provider import ITimeProvider
+        from motion_core.domain.services.time_provider import ITimeProvider
 
         provider = FakeTimeProvider()
 

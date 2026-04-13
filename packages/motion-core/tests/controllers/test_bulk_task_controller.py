@@ -4,14 +4,14 @@ from unittest.mock import MagicMock, Mock
 
 import pytest
 
-from taskdog_core.application.dto.status_change_output import StatusChangeOutput
-from taskdog_core.application.dto.task_operation_output import TaskOperationOutput
-from taskdog_core.controllers.bulk_task_controller import BulkTaskController
-from taskdog_core.controllers.query_controller import QueryController
-from taskdog_core.controllers.task_crud_controller import TaskCrudController
-from taskdog_core.controllers.task_lifecycle_controller import TaskLifecycleController
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.domain.exceptions.task_exceptions import TaskNotFoundException
+from motion_core.application.dto.status_change_output import StatusChangeOutput
+from motion_core.application.dto.task_operation_output import TaskOperationOutput
+from motion_core.controllers.bulk_task_controller import BulkTaskController
+from motion_core.controllers.query_controller import QueryController
+from motion_core.controllers.task_crud_controller import TaskCrudController
+from motion_core.controllers.task_lifecycle_controller import TaskLifecycleController
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.exceptions.task_exceptions import TaskNotFoundException
 
 
 def _make_task_output(task_id=1, name="Task", status=TaskStatus.IN_PROGRESS):

@@ -5,12 +5,12 @@ from datetime import date, datetime
 import pytest
 from pydantic import ValidationError
 
-from taskdog_core.application.dto.task_detail_output import TaskDetailOutput
-from taskdog_core.application.dto.task_dto import TaskDetailDto
-from taskdog_core.application.dto.task_operation_output import TaskOperationOutput
-from taskdog_core.application.dto.update_task_output import TaskUpdateOutput
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_server.api.models.responses import (
+from motion_core.application.dto.task_detail_output import TaskDetailOutput
+from motion_core.application.dto.task_dto import TaskDetailDto
+from motion_core.application.dto.task_operation_output import TaskOperationOutput
+from motion_core.application.dto.update_task_output import TaskUpdateOutput
+from motion_core.domain.entities.task import TaskStatus
+from motion_server.api.models.responses import (
     CompletionStatistics,
     DeadlineStatistics,
     EstimationStatistics,

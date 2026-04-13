@@ -59,9 +59,9 @@ jobs:
       - name: Install dependencies
         run: |
           uv sync --all-extras --dev
-          uv pip install -e packages/taskdog-core
-          uv pip install -e packages/taskdog-server
-          uv pip install -e packages/taskdog-ui
+          uv pip install -e packages/motion-core
+          uv pip install -e packages/motion-server
+          uv pip install -e packages/motion-ui
 
       - name: Run type checker
         run: make typecheck
@@ -73,16 +73,16 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - package: taskdog-core
+          - package: motion-core
             deps: ""
-          - package: taskdog-client
-            deps: "uv pip install -e packages/taskdog-core[dev]"
-          - package: taskdog-server
-            deps: "uv pip install -e packages/taskdog-core[dev]"
-          - package: taskdog-ui
-            deps: "uv pip install -e packages/taskdog-core[dev] && uv pip install -e packages/taskdog-client[dev]"
-          - package: taskdog-mcp
-            deps: "uv pip install -e packages/taskdog-core[dev] && uv pip install -e packages/taskdog-client[dev]"
+          - package: motion-client
+            deps: "uv pip install -e packages/motion-core[dev]"
+          - package: motion-server
+            deps: "uv pip install -e packages/motion-core[dev]"
+          - package: motion-ui
+            deps: "uv pip install -e packages/motion-core[dev] && uv pip install -e packages/motion-client[dev]"
+          - package: motion-mcp
+            deps: "uv pip install -e packages/motion-core[dev] && uv pip install -e packages/motion-client[dev]"
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -134,7 +134,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: [taskdog-core, taskdog-client, taskdog-server, taskdog-ui, taskdog-mcp]
+        package: [motion-core, motion-client, motion-server, motion-ui, motion-mcp]
     steps:
       - name: Checkout code
         uses: actions/checkout@v6

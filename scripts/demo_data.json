@@ -5,12 +5,15 @@
       "tasks": [
         {
           "id": "T1",
-          "name": "Project kickoff meeting",
-          "priority": 4,
-          "tags": ["work", "planning"],
+          "name": "Strategic Project Kickoff & Vision Alignment Session",
+          "priority": 5,
+          "tags": ["work", "planning", "strategy", "stakeholder-management"],
           "deadline_days": 1,
-          "estimate": 2,
-          "note": "Gather all stakeholders to discuss project scope, timeline, and deliverables. Prepare agenda: goals, tech stack, roles & responsibilities."
+          "estimate": 3,
+          "note": "Conduct comprehensive project kickoff meeting to establish clear vision, align stakeholders, and set foundational expectations. Agenda includes: project overview, success criteria definition, risk assessment, resource allocation, communication protocols, and timeline establishment. Ensure all key stakeholders (product, engineering, design, QA) are present and actively participate. Document action items, decisions, and follow-up responsibilities. Create shared understanding of project goals and success metrics.",
+          "planned_start": "2026-04-14T09:00:00",
+          "planned_end": "2026-04-14T12:00:00",
+          "is_fixed": true
         },
         {
           "id": "T2",

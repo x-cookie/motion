@@ -2,10 +2,10 @@
 
 import pytest
 
-from taskdog_core.application.queries.filters.non_archived_filter import (
+from motion_core.application.queries.filters.non_archived_filter import (
     NonArchivedFilter,
 )
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestNonArchivedFilter:

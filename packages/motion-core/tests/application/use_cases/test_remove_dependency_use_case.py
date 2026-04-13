@@ -2,9 +2,9 @@
 
 import pytest
 
-from taskdog_core.application.dto.manage_dependencies_input import RemoveDependencyInput
-from taskdog_core.application.use_cases.remove_dependency import RemoveDependencyUseCase
-from taskdog_core.domain.exceptions.task_exceptions import (
+from motion_core.application.dto.manage_dependencies_input import RemoveDependencyInput
+from motion_core.application.use_cases.remove_dependency import RemoveDependencyUseCase
+from motion_core.domain.exceptions.task_exceptions import (
     TaskNotFoundException,
     TaskValidationError,
 )

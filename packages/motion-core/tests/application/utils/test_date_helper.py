@@ -2,8 +2,8 @@
 
 from datetime import date, datetime
 
-from taskdog_core.application.utils.date_helper import is_workday
-from taskdog_core.infrastructure.holiday_checker import HolidayChecker
+from motion_core.application.utils.date_helper import is_workday
+from motion_core.infrastructure.holiday_checker import HolidayChecker
 
 
 class TestIsWorkday:

@@ -4,12 +4,12 @@ from pathlib import Path
 
 import pytest
 
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.domain.exceptions.tag_exceptions import TagNotFoundException
-from taskdog_core.infrastructure.persistence.database.sqlite_task_repository import (
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.exceptions.tag_exceptions import TagNotFoundException
+from motion_core.infrastructure.persistence.database.sqlite_task_repository import (
     SqliteTaskRepository,
 )
-from taskdog_core.infrastructure.persistence.mappers.task_db_mapper import TaskDbMapper
+from motion_core.infrastructure.persistence.mappers.task_db_mapper import TaskDbMapper
 
 
 class TestSqliteTaskRepositoryDeleteTag:

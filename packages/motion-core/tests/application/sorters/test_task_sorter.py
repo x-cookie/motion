@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from taskdog_core.application.sorters.task_sorter import TaskSorter
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.application.sorters.task_sorter import TaskSorter
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestTaskSorter:

@@ -1,6 +1,6 @@
 # CLI Commands Reference
 
-Complete reference for all Taskdog CLI commands.
+Complete reference for all Motion CLI commands.
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@ Complete reference for all Taskdog CLI commands.
 ### add - Create a new task
 
 ```bash
-taskdog add "Task name" [-p PRIORITY] [--fixed] [-d DEP_ID] [-t TAG]
+motion add "Task name" [-p PRIORITY] [--fixed] [-d DEP_ID] [-t TAG]
 ```
 
 Create a new task with optional priority, dependencies, and tags. Multiple `-d` and `-t` flags are allowed.
@@ -29,15 +29,15 @@ Create a new task with optional priority, dependencies, and tags. Multiple `-d` 
 **Examples:**
 
 ```bash
-taskdog add "Design phase" -p 150
-taskdog add "Implementation" -p 100 -d 1 -t backend -t api
-taskdog add "Team meeting" --fixed  # Won't be rescheduled
+motion add "Design phase" -p 150
+motion add "Implementation" -p 100 -d 1 -t backend -t api
+motion add "Team meeting" --fixed  # Won't be rescheduled
 ```
 
 ### update - Multi-field update
 
 ```bash
-taskdog update ID [--name NAME] [--priority N] [--status STATUS] [--planned-start DATE] [--planned-end DATE] [--deadline DATE] [--estimated-duration HOURS]
+motion update ID [--name NAME] [--priority N] [--status STATUS] [--planned-start DATE] [--planned-end DATE] [--deadline DATE] [--estimated-duration HOURS]
 ```
 
 Update multiple task fields at once.
@@ -45,8 +45,8 @@ Update multiple task fields at once.
 **Examples:**
 
 ```bash
-taskdog update 1 --priority 200 --deadline 2025-10-25
-taskdog update 2 --name "New task name"
+motion update 1 --priority 200 --deadline 2025-10-25
+motion update 2 --name "New task name"
 ```
 
 ## Task Management
@@ -54,7 +54,7 @@ taskdog update 2 --name "New task name"
 ### start - Start tasks
 
 ```bash
-taskdog start ID...
+motion start ID...
 ```
 
 Start one or more tasks. Records actual start time and changes status to IN_PROGRESS.
@@ -62,14 +62,14 @@ Start one or more tasks. Records actual start time and changes status to IN_PROG
 **Examples:**
 
 ```bash
-taskdog start 1
-taskdog start 2 3 4  # Batch operation
+motion start 1
+motion start 2 3 4  # Batch operation
 ```
 
 ### done - Complete tasks
 
 ```bash
-taskdog done ID...
+motion done ID...
 ```
 
 Mark tasks as completed. Records actual end time.
@@ -77,14 +77,14 @@ Mark tasks as completed. Records actual end time.
 **Examples:**
 
 ```bash
-taskdog done 1
-taskdog done 2 3 4  # Batch operation
+motion done 1
+motion done 2 3 4  # Batch operation
 ```
 
 ### pause - Pause tasks
 
 ```bash
-taskdog pause ID...
+motion pause ID...
 ```
 
 Pause tasks and reset to PENDING status. Clears timestamps.
@@ -92,14 +92,14 @@ Pause tasks and reset to PENDING status. Clears timestamps.
 **Examples:**
 
 ```bash
-taskdog pause 1
-taskdog pause 2 3  # Batch operation
+motion pause 1
+motion pause 2 3  # Batch operation
 ```
 
 ### cancel - Cancel tasks
 
 ```bash
-taskdog cancel ID...
+motion cancel ID...
 ```
 
 Mark tasks as CANCELED.
@@ -107,14 +107,14 @@ Mark tasks as CANCELED.
 **Examples:**
 
 ```bash
-taskdog cancel 1
-taskdog cancel 2 3  # Batch operation
+motion cancel 1
+motion cancel 2 3  # Batch operation
 ```
 
 ### reopen - Reopen tasks
 
 ```bash
-taskdog reopen ID...
+motion reopen ID...
 ```
 
 Reopen completed or canceled tasks. Resets to PENDING status.
@@ -122,14 +122,14 @@ Reopen completed or canceled tasks. Resets to PENDING status.
 **Examples:**
 
 ```bash
-taskdog reopen 1
-taskdog reopen 2 3  # Batch operation
+motion reopen 1
+motion reopen 2 3  # Batch operation
 ```
 
 ### rm - Remove tasks
 
 ```bash
-taskdog rm ID... [--hard]
+motion rm ID... [--hard]
 ```
 
 Remove tasks. Default is soft delete (sets is_archived=true). Use `--hard` for permanent deletion.
@@ -137,14 +137,14 @@ Remove tasks. Default is soft delete (sets is_archived=true). Use `--hard` for p
 **Examples:**
 
 ```bash
-taskdog rm 1        # Soft delete (can be restored)
-taskdog rm 2 --hard # Permanent deletion
+motion rm 1        # Soft delete (can be restored)
+motion rm 2 --hard # Permanent deletion
 ```
 
 ### restore - Restore soft-deleted tasks
 
 ```bash
-taskdog restore ID...
+motion restore ID...
 ```
 
 Restore previously archived (soft-deleted) tasks.
@@ -152,8 +152,8 @@ Restore previously archived (soft-deleted) tasks.
 **Examples:**
 
 ```bash
-taskdog restore 1
-taskdog restore 2 3  # Batch operation
+motion restore 1
+motion restore 2 3  # Batch operation
 ```
 
 ## Dependencies
@@ -161,7 +161,7 @@ taskdog restore 2 3  # Batch operation
 ### add-dependency - Add task dependency
 
 ```bash
-taskdog add-dependency TASK_ID DEPENDS_ON_ID
+motion add-dependency TASK_ID DEPENDS_ON_ID
 ```
 
 Add a dependency relationship. Includes circular dependency detection.
@@ -169,13 +169,13 @@ Add a dependency relationship. Includes circular dependency detection.
 **Examples:**
 
 ```bash
-taskdog add-dependency 2 1  # Task 2 depends on task 1
+motion add-dependency 2 1  # Task 2 depends on task 1
 ```
 
 ### remove-dependency - Remove task dependency
 
 ```bash
-taskdog remove-dependency TASK_ID DEP_ID
+motion remove-dependency TASK_ID DEP_ID
 ```
 
 Remove a dependency relationship.
@@ -183,7 +183,7 @@ Remove a dependency relationship.
 **Examples:**
 
 ```bash
-taskdog remove-dependency 2 1
+motion remove-dependency 2 1
 ```
 
 ## Tags Management
@@ -191,17 +191,17 @@ taskdog remove-dependency 2 1
 ### tags - Manage tags
 
 ```bash
-taskdog tags              # List all tags with counts
-taskdog tags ID           # Show tags for a task
-taskdog tags ID TAG1...   # Set tags for a task (replaces existing)
+motion tags              # List all tags with counts
+motion tags ID           # Show tags for a task
+motion tags ID TAG1...   # Set tags for a task (replaces existing)
 ```
 
 **Examples:**
 
 ```bash
-taskdog tags                    # List all tags
-taskdog tags 1                  # Show task 1's tags
-taskdog tags 1 urgent backend   # Set tags for task 1
+motion tags                    # List all tags
+motion tags 1                  # Show task 1's tags
+motion tags 1 urgent backend   # Set tags for task 1
 ```
 
 ## Optimization
@@ -209,7 +209,7 @@ taskdog tags 1 urgent backend   # Set tags for task 1
 ### optimize - Auto-schedule tasks
 
 ```bash
-taskdog optimize [--start-date DATE] [--max-hours-per-day N] [-a ALGORITHM] [-f]
+motion optimize [--start-date DATE] [--max-hours-per-day N] [-a ALGORITHM] [-f]
 ```
 
 Auto-generate optimal task schedules based on priorities, deadlines, and dependencies.
@@ -236,10 +236,10 @@ Auto-generate optimal task schedules based on priorities, deadlines, and depende
 **Examples:**
 
 ```bash
-taskdog optimize
-taskdog optimize --start-date 2025-10-22 --max-hours-per-day 8
-taskdog optimize -a balanced
-taskdog optimize -f  # Force re-optimization
+motion optimize
+motion optimize --start-date 2025-10-22 --max-hours-per-day 8
+motion optimize -a balanced
+motion optimize -f  # Force re-optimization
 ```
 
 ## Visualization
@@ -247,7 +247,7 @@ taskdog optimize -f  # Force re-optimization
 ### table - Table view
 
 ```bash
-taskdog table [OPTIONS]
+motion table [OPTIONS]
 ```
 
 Display tasks in table format with filtering and sorting.
@@ -266,16 +266,16 @@ Display tasks in table format with filtering and sorting.
 **Examples:**
 
 ```bash
-taskdog table
-taskdog table -s priority -r
-taskdog table --status pending --tag backend
-taskdog table -a  # Show archived tasks too
+motion table
+motion table -s priority -r
+motion table --status pending --tag backend
+motion table -a  # Show archived tasks too
 ```
 
 ### gantt - Gantt chart
 
 ```bash
-taskdog gantt [OPTIONS]
+motion gantt [OPTIONS]
 ```
 
 Display visual timeline with workload analysis. Supports same filter/sort options as table.
@@ -291,15 +291,15 @@ Display visual timeline with workload analysis. Supports same filter/sort option
 **Examples:**
 
 ```bash
-taskdog gantt
-taskdog gantt -s deadline
-taskdog gantt --start-date 2025-10-20 --end-date 2025-10-30
+motion gantt
+motion gantt -s deadline
+motion gantt --start-date 2025-10-20 --end-date 2025-10-30
 ```
 
 ### show - Task details
 
 ```bash
-taskdog show ID [--raw]
+motion show ID [--raw]
 ```
 
 Show detailed information for a task, including notes. Notes are rendered as markdown by default.
@@ -307,14 +307,14 @@ Show detailed information for a task, including notes. Notes are rendered as mar
 **Examples:**
 
 ```bash
-taskdog show 1
-taskdog show 1 --raw  # Show raw markdown
+motion show 1
+motion show 1 --raw  # Show raw markdown
 ```
 
 ### export - Export tasks
 
 ```bash
-taskdog export [OPTIONS]
+motion export [OPTIONS]
 ```
 
 Export tasks to JSON or CSV format. Exports non-archived tasks by default.
@@ -333,10 +333,10 @@ Export tasks to JSON or CSV format. Exports non-archived tasks by default.
 **Examples:**
 
 ```bash
-taskdog export
-taskdog export --format csv -o tasks.csv
-taskdog export --format markdown -o tasks.md
-taskdog export --status pending -t backend
+motion export
+motion export --format csv -o tasks.csv
+motion export --format markdown -o tasks.md
+motion export --status pending -t backend
 ```
 
 ## Analytics
@@ -344,7 +344,7 @@ taskdog export --status pending -t backend
 ### stats - Task statistics
 
 ```bash
-taskdog stats [--period PERIOD] [--focus FOCUS]
+motion stats [--period PERIOD] [--focus FOCUS]
 ```
 
 Display task statistics and analytics.
@@ -357,9 +357,9 @@ Display task statistics and analytics.
 **Examples:**
 
 ```bash
-taskdog stats
-taskdog stats -p 7d -f time
-taskdog stats --period 30d --focus trends
+motion stats
+motion stats -p 7d -f time
+motion stats --period 30d --focus trends
 ```
 
 ## Notes & TUI
@@ -367,7 +367,7 @@ taskdog stats --period 30d --focus trends
 ### note - Edit task notes
 
 ```bash
-taskdog note ID
+motion note ID
 ```
 
 Edit markdown notes for a task using `$EDITOR`.
@@ -375,13 +375,13 @@ Edit markdown notes for a task using `$EDITOR`.
 **Examples:**
 
 ```bash
-taskdog note 1
+motion note 1
 ```
 
 ### tui - Interactive TUI
 
 ```bash
-taskdog tui
+motion tui
 ```
 
 Launch full-screen interactive terminal user interface.
@@ -405,7 +405,7 @@ Tasks can be in one of four states:
 - **COMPLETED**: Finished (green)
 - **CANCELED**: Won't be done (red)
 
-**Note**: Archived tasks (soft-deleted) retain their original status and can be restored with `taskdog restore`.
+**Note**: Archived tasks (soft-deleted) retain their original status and can be restored with `motion restore`.
 
 ## Tags
 
@@ -415,16 +415,16 @@ Tasks can be organized with tags for better categorization and filtering.
 
 ```bash
 # Add task with tags
-taskdog add "Backend API" --tag backend --tag api
+motion add "Backend API" --tag backend --tag api
 
 # Manage tags
-taskdog tags                    # List all tags with counts
-taskdog tags 1                  # Show tags for task 1
-taskdog tags 1 urgent backend   # Set tags (replaces existing)
+motion tags                    # List all tags with counts
+motion tags 1                  # Show tags for task 1
+motion tags 1 urgent backend   # Set tags (replaces existing)
 
 # Filter by tags
-taskdog table --tag backend     # Show tasks with 'backend' tag
-taskdog table --tag api --tag db  # OR logic: tasks with 'api' OR 'db'
+motion table --tag backend     # Show tasks with 'backend' tag
+motion table --tag api --tag db  # OR logic: tasks with 'api' OR 'db'
 ```
 
 **Tag behavior:**

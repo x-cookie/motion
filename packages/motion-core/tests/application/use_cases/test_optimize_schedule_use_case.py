@@ -4,14 +4,14 @@ from datetime import date, datetime
 
 import pytest
 
-from taskdog_core.application.dto.create_task_input import CreateTaskInput
-from taskdog_core.application.use_cases.create_task import CreateTaskUseCase
-from taskdog_core.application.use_cases.optimize_schedule import (
+from motion_core.application.dto.create_task_input import CreateTaskInput
+from motion_core.application.use_cases.create_task import CreateTaskUseCase
+from motion_core.application.use_cases.optimize_schedule import (
     OptimizeScheduleInput,
     OptimizeScheduleUseCase,
 )
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_core.domain.exceptions.task_exceptions import (
+from motion_core.domain.entities.task import TaskStatus
+from motion_core.domain.exceptions.task_exceptions import (
     NoSchedulableTasksError,
     TaskNotFoundException,
 )
@@ -431,9 +431,9 @@ class TestOptimizeScheduleUseCase:
         result = self.create_use_case.execute(input_dto)
 
         # Complete the task to make it unschedulable
-        from taskdog_core.application.dto.base import SingleTaskInput
-        from taskdog_core.application.use_cases.complete_task import CompleteTaskUseCase
-        from taskdog_core.application.use_cases.start_task import StartTaskUseCase
+        from motion_core.application.dto.base import SingleTaskInput
+        from motion_core.application.use_cases.complete_task import CompleteTaskUseCase
+        from motion_core.application.use_cases.start_task import StartTaskUseCase
 
         start_use_case = StartTaskUseCase(self.repository)
         complete_use_case = CompleteTaskUseCase(self.repository)
@@ -508,9 +508,9 @@ class TestOptimizeScheduleUseCase:
         result2 = self.create_use_case.execute(input_dto2)
 
         # Complete the second task
-        from taskdog_core.application.dto.base import SingleTaskInput
-        from taskdog_core.application.use_cases.complete_task import CompleteTaskUseCase
-        from taskdog_core.application.use_cases.start_task import StartTaskUseCase
+        from motion_core.application.dto.base import SingleTaskInput
+        from motion_core.application.use_cases.complete_task import CompleteTaskUseCase
+        from motion_core.application.use_cases.start_task import StartTaskUseCase
 
         start_use_case = StartTaskUseCase(self.repository)
         complete_use_case = CompleteTaskUseCase(self.repository)

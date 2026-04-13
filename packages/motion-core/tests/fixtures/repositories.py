@@ -7,9 +7,9 @@ from copy import deepcopy
 from datetime import date, datetime
 from typing import Any
 
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.domain.exceptions.tag_exceptions import TagNotFoundException
-from taskdog_core.domain.repositories.task_repository import TaskRepository
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.exceptions.tag_exceptions import TagNotFoundException
+from motion_core.domain.repositories.task_repository import TaskRepository
 
 
 class InMemoryTaskRepository(TaskRepository):

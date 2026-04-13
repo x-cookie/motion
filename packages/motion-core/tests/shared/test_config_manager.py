@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 import pytest
 
-from taskdog_core.shared.config_manager import ConfigManager, parse_time_value
+from motion_core.shared.config_manager import ConfigManager, parse_time_value
 
 
 class TestConfigManager:

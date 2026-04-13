@@ -3,7 +3,7 @@
 from unittest.mock import Mock
 
 import pytest
-from taskdog_client.lifecycle_client import LifecycleClient
+from motion_client.lifecycle_client import LifecycleClient
 
 
 class TestLifecycleClient:
@@ -43,7 +43,7 @@ class TestLifecycleClient:
 
     def test_lifecycle_operation_error_handling(self):
         """Test lifecycle operations propagate errors from base client."""
-        from taskdog_core.domain.exceptions.task_exceptions import TaskNotFoundException
+        from motion_core.domain.exceptions.task_exceptions import TaskNotFoundException
 
         self.mock_base.lifecycle_operation.side_effect = TaskNotFoundException(
             "Task not found"

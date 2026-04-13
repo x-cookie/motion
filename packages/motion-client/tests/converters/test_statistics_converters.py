@@ -1,7 +1,7 @@
 """Tests for statistics converter functions."""
 
 import pytest
-from taskdog_client.converters.statistics_converters import (
+from motion_client.converters.statistics_converters import (
     _parse_deadline_statistics,
     _parse_estimation_statistics,
     _parse_priority_statistics,

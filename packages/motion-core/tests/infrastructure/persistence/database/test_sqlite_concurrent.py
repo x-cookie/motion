@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from taskdog_core.infrastructure.persistence.database.sqlite_task_repository import (
+from motion_core.infrastructure.persistence.database.sqlite_task_repository import (
     SqliteTaskRepository,
 )
 

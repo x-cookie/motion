@@ -4,7 +4,7 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.domain.entities.task import TaskStatus
+from motion_core.domain.entities.task import TaskStatus
 
 
 class TestLifecycleRouter:

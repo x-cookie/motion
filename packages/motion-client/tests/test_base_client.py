@@ -4,9 +4,9 @@ from unittest.mock import Mock, patch
 
 import httpx
 import pytest
-from taskdog_client.base_client import BaseApiClient
+from motion_client.base_client import BaseApiClient
 
-from taskdog_core.domain.exceptions.task_exceptions import (
+from motion_core.domain.exceptions.task_exceptions import (
     AuthenticationError,
     ServerConnectionError,
     ServerError,
@@ -42,7 +42,7 @@ class TestBaseApiClient:
         with BaseApiClient(self.base_url, self.timeout) as client:
             assert isinstance(client, BaseApiClient)
 
-    @patch("taskdog_client.base_client.httpx.Client")
+    @patch("motion_client.base_client.httpx.Client")
     def test_close(self, mock_client_class):
         """Test close method closes underlying client."""
         mock_client_instance = Mock()

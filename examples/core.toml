@@ -1,13 +1,13 @@
-# Taskdog Core Configuration Example
+# Motion Core Configuration Example
 #
-# Copy this file to ~/.config/taskdog/core.toml (or $XDG_CONFIG_HOME/taskdog/core.toml)
+# Copy this file to ~/.config/motion/core.toml (or $XDG_CONFIG_HOME/motion/core.toml)
 # to customize business logic defaults.
 #
 # This config is for CORE BUSINESS LOGIC (region, storage).
 # For CLI/TUI infrastructure settings (API connection, input defaults), see cli.toml.
 # For server-specific settings (authentication), see server.toml.
 #
-# Note: Server host/port are configured via CLI arguments (taskdog-server --host --port),
+# Note: Server host/port are configured via CLI arguments (motion-server --host --port),
 # not in this config file.
 
 # =============================================================================
@@ -41,7 +41,7 @@ country = "JP"
 backend = "sqlite"
 
 # Database file location (default: XDG data directory)
-# If not specified, uses: ~/.local/share/taskdog/tasks.db
+# If not specified, uses: ~/.local/share/motion/tasks.db
 # Set custom path for database file:
 # database_url = "/path/to/custom/tasks.db"
 
@@ -51,9 +51,9 @@ backend = "sqlite"
 #
 # Environment variables override settings in this file:
 #
-# - TASKDOG_REGION_COUNTRY: Country code for holidays
-# - TASKDOG_STORAGE_BACKEND: Storage backend type
-# - TASKDOG_STORAGE_DATABASE_URL: Database file path
+# - MOTION_REGION_COUNTRY: Country code for holidays
+# - MOTION_STORAGE_BACKEND: Storage backend type
+# - MOTION_STORAGE_DATABASE_URL: Database file path
 
 # =============================================================================
 # Notes
@@ -62,7 +62,7 @@ backend = "sqlite"
 # 1. If this file doesn't exist, defaults are used
 # 2. Only the server reads this config (CLI/TUI read cli.toml)
 # 3. Environment variables can override settings
-# 4. Changes require server restart: systemctl --user restart taskdog-server
-# 5. Optimization algorithms can be listed with: taskdog optimize --help
+# 4. Changes require server restart: systemctl --user restart motion-server
+# 5. Optimization algorithms can be listed with: motion optimize --help
 #
 # For more details, see the main README.md

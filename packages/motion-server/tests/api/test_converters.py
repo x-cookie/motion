@@ -5,20 +5,20 @@ from unittest.mock import Mock
 
 import pytest
 
-from taskdog_core.application.dto.gantt_output import (
+from motion_core.application.dto.gantt_output import (
     GanttDateRange,
     GanttOutput,
 )
-from taskdog_core.application.dto.task_detail_output import TaskDetailOutput
-from taskdog_core.application.dto.task_dto import (
+from motion_core.application.dto.task_detail_output import TaskDetailOutput
+from motion_core.application.dto.task_dto import (
     GanttTaskDto,
     TaskDetailDto,
 )
-from taskdog_core.application.dto.task_list_output import TaskListOutput
-from taskdog_core.application.dto.task_operation_output import TaskOperationOutput
-from taskdog_core.application.dto.update_task_output import TaskUpdateOutput
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_server.api.converters import (
+from motion_core.application.dto.task_list_output import TaskListOutput
+from motion_core.application.dto.task_operation_output import TaskOperationOutput
+from motion_core.application.dto.update_task_output import TaskUpdateOutput
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_server.api.converters import (
     convert_to_task_detail_response,
     convert_to_task_list_response,
     convert_to_update_task_response,

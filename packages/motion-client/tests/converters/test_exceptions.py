@@ -1,9 +1,9 @@
 """Tests for ConversionError exception."""
 
 import pytest
-from taskdog_client.converters.exceptions import ConversionError
+from motion_client.converters.exceptions import ConversionError
 
-from taskdog_core.domain.exceptions.task_exceptions import TaskError
+from motion_core.domain.exceptions.task_exceptions import TaskError
 
 
 class TestConversionError:

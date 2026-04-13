@@ -4,8 +4,8 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.dto.create_task_input import CreateTaskInput
-from taskdog_core.application.use_cases.create_task import CreateTaskUseCase
+from motion_core.application.dto.create_task_input import CreateTaskInput
+from motion_core.application.use_cases.create_task import CreateTaskUseCase
 
 
 class TestCreateTaskUseCase:

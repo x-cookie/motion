@@ -4,7 +4,7 @@ from datetime import date
 from unittest.mock import Mock, patch
 
 import pytest
-from taskdog_client.query_client import QueryClient
+from motion_client.query_client import QueryClient
 
 
 class TestQueryClient:
@@ -16,7 +16,7 @@ class TestQueryClient:
         self.mock_base = Mock()
         self.client = QueryClient(self.mock_base)
 
-    @patch("taskdog_client.query_client.convert_to_task_list_output")
+    @patch("motion_client.query_client.convert_to_task_list_output")
     def test_list_tasks(self, mock_convert):
         """Test list_tasks makes correct API call."""
         mock_json = {
@@ -70,7 +70,7 @@ class TestQueryClient:
     )
     def test_get_single_task_operations(self, method_name, converter_name, mock_json):
         """Test single task GET operations make correct API calls."""
-        with patch(f"taskdog_client.query_client.{converter_name}") as mock_convert:
+        with patch(f"motion_client.query_client.{converter_name}") as mock_convert:
             self.mock_base._request_json.return_value = mock_json
 
             mock_output = Mock()
@@ -84,7 +84,7 @@ class TestQueryClient:
             )
             assert result == mock_output
 
-    @patch("taskdog_client.query_client.convert_to_gantt_output")
+    @patch("motion_client.query_client.convert_to_gantt_output")
     def test_get_gantt_data(self, mock_convert):
         """Test get_gantt_data makes correct API call."""
         self.mock_base._request_json.return_value = {"date_range": {}, "tasks": []}
@@ -116,7 +116,7 @@ class TestQueryClient:
 
         assert result == mock_output
 
-    @patch("taskdog_client.query_client.convert_to_tag_statistics_output")
+    @patch("motion_client.query_client.convert_to_tag_statistics_output")
     def test_get_tag_statistics(self, mock_convert):
         """Test get_tag_statistics makes correct API call."""
         self.mock_base._request_json.return_value = {"tags": [], "total_tags": 0}

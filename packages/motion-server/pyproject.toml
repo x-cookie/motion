@@ -1,7 +1,7 @@
 [project]
-name = "taskdog-server"
+name = "motion-server"
 version = "0.18.5"
-description = "FastAPI server for Taskdog task management system"
+description = "FastAPI server for Motion task management system"
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [
@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "taskdog-core==0.18.5",
+    "motion-core==0.18.5",
     "fastapi>=0.115.0",
     "uvicorn[standard]>=0.32.0",
     "pydantic>=2.10.0",
@@ -35,7 +35,7 @@ dev = [
 ]
 
 [project.scripts]
-taskdog-server = "taskdog_server.main:main"
+motion-server = "motion_server.main:main"
 
 [project.urls]
 Homepage = "https://github.com/Kohei-Wada/taskdog"
@@ -48,19 +48,19 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = [
-    "taskdog_server",
-    "taskdog_server.api",
-    "taskdog_server.api.models",
-    "taskdog_server.api.routers",
-    "taskdog_server.config",
-    "taskdog_server.websocket",
-    "taskdog_server.infrastructure",
-    "taskdog_server.infrastructure.logging",
+    "motion_server",
+    "motion_server.api",
+    "motion_server.api.models",
+    "motion_server.api.routers",
+    "motion_server.config",
+    "motion_server.websocket",
+    "motion_server.infrastructure",
+    "motion_server.infrastructure.logging",
 ]
 package-dir = { "" = "src" }
 
 [tool.setuptools.package-data]
-taskdog_server = ["py.typed"]
+motion_server = ["py.typed"]
 
 [tool.mypy]
 python_version = "3.13"

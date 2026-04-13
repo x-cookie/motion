@@ -1,14 +1,14 @@
 # Design Philosophy
 
-This document explains the core design principles behind Taskdog and why certain architectural decisions were made.
+This document explains the core design principles behind Motion and why certain architectural decisions were made.
 
 ## Overview
 
-Taskdog is a **personal task management system** designed for individual users who value simplicity, transparency, and privacy. It combines three interfaces (CLI, TUI, and REST API) with powerful scheduling algorithms while maintaining a flat, dependency-based task structure.
+Motion is a **personal task management system** designed for individual users who value simplicity, transparency, and privacy. It combines three interfaces (CLI, TUI, and REST API) with powerful scheduling algorithms while maintaining a flat, dependency-based task structure.
 
 ### The Design Journey
 
-Early versions of Taskdog attempted to support parent-child task hierarchies. However, I discovered that this feature:
+Early versions of Motion attempted to support parent-child task hierarchies. However, I discovered that this feature:
 
 - Made schedule optimization algorithms unpredictable and complex
 - Introduced numerous edge cases in business logic (similar to Redmine's challenges)
@@ -18,11 +18,11 @@ Early versions of Taskdog attempted to support parent-child task hierarchies. Ho
 
 This led to a deliberate decision: **optimize for individual task management**, where flat structure excels.
 
-Unlike team-oriented project management tools (Asana, Jira, ClickUp) or cloud-based AI schedulers (Motion, Reclaim), Taskdog focuses on what individual users truly need: a transparent, offline-capable, and infinitely customizable task manager that doesn't burden them with features designed for teams.
+Unlike team-oriented project management tools (Asana, Jira, ClickUp) or cloud-based AI schedulers (Motion, Reclaim), Motion focuses on what individual users truly need: a transparent, offline-capable, and infinitely customizable task manager that doesn't burden them with features designed for teams.
 
 ## Target Audience
 
-Taskdog is built for:
+Motion is built for:
 
 - **Individual users** managing personal tasks and projects
 - **Engineers and power users** who prefer terminal interfaces
@@ -30,7 +30,7 @@ Taskdog is built for:
 - **GTD practitioners** following Getting Things Done methodology
 - **Algorithm enthusiasts** who want to understand and control scheduling logic
 
-Taskdog is **NOT** designed for:
+Motion is **NOT** designed for:
 
 - Team collaboration and project management
 - Enterprise workflow orchestration
@@ -66,20 +66,20 @@ Taskdog is **NOT** designed for:
 
 ```bash
 # Create main tracking task with detailed notes
-taskdog add "Website Redesign Project" --tag web --priority 9
-taskdog note 1  # Write overall plan, milestones, requirements
+motion add "Website Redesign Project" --tag web --priority 9
+motion note 1  # Write overall plan, milestones, requirements
 
 # Break down into concrete tasks with dependencies
-taskdog add "Requirements gathering" --tag web --priority 8
-taskdog add "Design mockups" --tag web --priority 7 --depends-on 2
-taskdog add "Frontend implementation" --tag web --priority 6 --depends-on 3
-taskdog add "Backend API" --tag web --priority 6 --depends-on 3
-taskdog add "Integration testing" --tag web --priority 5 --depends-on 4 5
-taskdog add "Deployment" --tag web --priority 4 --depends-on 6
+motion add "Requirements gathering" --tag web --priority 8
+motion add "Design mockups" --tag web --priority 7 --depends-on 2
+motion add "Frontend implementation" --tag web --priority 6 --depends-on 3
+motion add "Backend API" --tag web --priority 6 --depends-on 3
+motion add "Integration testing" --tag web --priority 5 --depends-on 4 5
+motion add "Deployment" --tag web --priority 4 --depends-on 6
 
 # View the entire project
-taskdog table --tag web
-taskdog gantt --tag web  # Visualize dependencies
+motion table --tag web
+motion gantt --tag web  # Visualize dependencies
 ```
 
 **Result**:
@@ -163,7 +163,7 @@ Compare this to Motion/Reclaim: "Our AI schedules your tasks" (black box, no con
 
 ### Why Optimization Became Unpredictable
 
-The core feature of Taskdog is schedule optimization. Parent-child relationships broke this:
+The core feature of Motion is schedule optimization. Parent-child relationships broke this:
 
 ```python
 # Questions that had no good answers:
@@ -316,19 +316,19 @@ For personal task management with 1-3 concurrent tasks, parent-child relationshi
 **Solution 1: Dependencies + Tags**
 
 ```bash
-taskdog add "Blog: Research topic" --tag blog --priority 8
-taskdog add "Blog: Outline" --tag blog --priority 7 --depends-on 1
-taskdog add "Blog: Write draft" --tag blog --priority 6 --depends-on 2
-taskdog add "Blog: Edit and publish" --tag blog --priority 5 --depends-on 3
+motion add "Blog: Research topic" --tag blog --priority 8
+motion add "Blog: Outline" --tag blog --priority 7 --depends-on 1
+motion add "Blog: Write draft" --tag blog --priority 6 --depends-on 2
+motion add "Blog: Edit and publish" --tag blog --priority 5 --depends-on 3
 
-taskdog table --tag blog  # See all related tasks
+motion table --tag blog  # See all related tasks
 ```
 
 **Solution 2: Checklist in Notes**
 
 ```bash
-taskdog add "Write blog post" --priority 8
-taskdog note 1
+motion add "Write blog post" --priority 8
+motion note 1
 
 # In the note (markdown):
 ## Blog Post: AI Task Management
@@ -352,8 +352,8 @@ taskdog note 1
 ```bash
 # Just create 6 tasks, it's fine!
 # You're not managing 100 tasks per project
-taskdog add "Blog intro" --tag blog
-taskdog add "Blog section 1" --tag blog --depends-on 1
+motion add "Blog intro" --tag blog
+motion add "Blog section 1" --tag blog --depends-on 1
 # ... etc
 ```
 
@@ -371,7 +371,7 @@ All three approaches work perfectly without parent-child relationships.
 - Local-first data storage
 - Powerful filtering and reporting
 
-**Taskdog advantages**:
+**Motion advantages**:
 
 - Modern Python codebase (Taskwarrior is C++)
 - Multiple optimization algorithms (9 choices)
@@ -386,7 +386,7 @@ All three approaches work perfectly without parent-child relationships.
 - Mobile apps (via Taskwarrior Server)
 - More filtering capabilities
 
-**Verdict**: Taskdog is "Taskwarrior for the modern era" with AI integration.
+**Verdict**: Motion is "Taskwarrior for the modern era" with AI integration.
 
 ### vs. Motion / Reclaim.ai
 
@@ -398,7 +398,7 @@ All three approaches work perfectly without parent-child relationships.
 - Team features available
 - No algorithm transparency
 
-**Taskdog approach**:
+**Motion approach**:
 
 - 9 transparent algorithms you can understand
 - Free and open-source
@@ -409,9 +409,9 @@ All three approaches work perfectly without parent-child relationships.
 **Trade-off**:
 
 - Motion: "Just works" but expensive and opaque
-- Taskdog: Requires learning but free and transparent
+- Motion: Requires learning but free and transparent
 
-**Why Taskdog is better for engineers**:
+**Why Motion is better for engineers**:
 
 1. You can integrate YOUR choice of AI (ChatGPT, Claude, local LLMs)
 2. You understand exactly how scheduling works
@@ -429,7 +429,7 @@ All three approaches work perfectly without parent-child relationships.
 - Cloud-only
 - Heavy UI
 
-**Taskdog approach**:
+**Motion approach**:
 
 - Flat structure with dependencies
 - Individual focus
@@ -440,7 +440,7 @@ All three approaches work perfectly without parent-child relationships.
 **When to use which**:
 
 - **Asana/Jira**: Managing team projects with 5+ people
-- **Taskdog**: Managing your personal tasks and projects
+- **Motion**: Managing your personal tasks and projects
 
 They serve completely different markets.
 
@@ -494,26 +494,26 @@ These features would:
 2. Blur the focus on personal task management
 3. Require cloud infrastructure (against privacy principle)
 4. Compete poorly with specialized tools
-5. Dilute what makes Taskdog unique
+5. Dilute what makes Motion unique
 
 ## Deployment Philosophy
 
 ### Package-First Approach
 
-Taskdog focuses on being a **simple, installable package**:
+Motion focuses on being a **simple, installable package**:
 
 ```bash
 # Primary installation method
-uv tool install taskdog
-uv tool install taskdog-server
+uv tool install motion
+uv tool install motion-server
 
 # Or via pip
-pip install taskdog taskdog-server
+pip install motion motion-server
 ```
 
 ### What This Repository Includes
 
-- Python packages (taskdog-core, taskdog-server, taskdog-ui)
+- Python packages (motion-core, motion-server, motion-ui)
 - systemd/launchd service files for auto-start
 - **Basic Dockerfile** for containerized deployment (see root `Dockerfile`)
 - Configuration examples
@@ -526,7 +526,7 @@ pip install taskdog taskdog-server
 
 ## Contributing Within the Philosophy
 
-If you want to contribute to Taskdog, ask yourself:
+If you want to contribute to Motion, ask yourself:
 
 1. **Does this benefit individual users?** (Not teams)
 2. **Does this maintain simplicity?** (Every feature has a cost)
@@ -555,7 +555,7 @@ When in doubt, open a discussion issue first!
 
 ## Conclusion
 
-Taskdog's design philosophy can be summarized in one sentence:
+Motion's design philosophy can be summarized in one sentence:
 
 > **A transparent, privacy-respecting task manager for individuals who want to understand and control how their time is optimized.**
 
@@ -566,7 +566,7 @@ We believe that:
 - Simplicity and focus create better experiences than feature bloat
 - Your tasks are your data, stored on your machine
 
-If this philosophy resonates with you, welcome to Taskdog! If you need team features, cloud sync, or don't want to learn how scheduling works, other excellent tools exist (and that's okay).
+If this philosophy resonates with you, welcome to Motion! If you need team features, cloud sync, or don't want to learn how scheduling works, other excellent tools exist (and that's okay).
 
 ---
 

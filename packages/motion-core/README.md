@@ -1,10 +1,10 @@
-# taskdog-core
+# motion-core
 
-Core business logic and infrastructure for Taskdog task management system.
+Core business logic and infrastructure for Motion task management system.
 
 ## Overview
 
-This package contains the core components shared by both the Taskdog server and UI:
+This package contains the core components shared by both the Motion server and UI:
 
 - **Domain Layer**: Business entities, domain services, and interfaces
 - **Application Layer**: Use cases, queries, DTOs, and business logic orchestration
@@ -14,7 +14,7 @@ This package contains the core components shared by both the Taskdog server and 
 ## Installation
 
 ```bash
-pip install taskdog-core
+pip install motion-core
 ```
 
 For development:
@@ -39,27 +39,27 @@ Controllers (orchestration layer)
 
 ### Key Components
 
-**Domain Layer** (`taskdog_core/domain/`):
+**Domain Layer** (`motion_core/domain/`):
 
 - `Task` - Core entity with status, priority, deadlines, dependencies
 - `TaskStatus` - PENDING, IN_PROGRESS, COMPLETED, CANCELED
 - `TimeTracker` - Records actual_start/actual_end timestamps
 - `TaskNotFoundException`, `TaskValidationError` - Domain exceptions
 
-**Application Layer** (`taskdog_core/application/`):
+**Application Layer** (`motion_core/application/`):
 
 - **Use Cases**: CreateTaskUseCase, StartTaskUseCase, OptimizeScheduleUseCase, etc.
 - **Validators**: TaskFieldValidatorRegistry with Status and Dependency validators
 - **Services**: WorkloadAllocator, OptimizationSummaryBuilder, TaskQueryService
 - **Optimization**: 9 scheduling strategies (greedy, balanced, backward, priority_first, earliest_deadline, round_robin, dependency_aware, genetic, monte_carlo)
 
-**Infrastructure Layer** (`taskdog_core/infrastructure/`):
+**Infrastructure Layer** (`motion_core/infrastructure/`):
 
 - `SqliteTaskRepository` - SQLite persistence with transactional writes
 - `SqliteNotesRepository` - Database-based notes storage
 - `ConfigManager` - TOML configuration loading
 
-**Controllers** (`taskdog_core/controllers/`):
+**Controllers** (`motion_core/controllers/`):
 
 - `TaskCrudController` - Create, update, delete operations
 - `TaskLifecycleController` - Start, complete, pause, cancel, reopen
@@ -70,11 +70,11 @@ Controllers (orchestration layer)
 ## Usage Example
 
 ```python
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.infrastructure.persistence.database.sqlite_task_repository import SqliteTaskRepository
-from taskdog_core.controllers.task_crud_controller import TaskCrudController
-from taskdog_core.infrastructure.config.config_manager import ConfigManager
-from taskdog_core.shared.utils.logger import StandardLogger
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.infrastructure.persistence.database.sqlite_task_repository import SqliteTaskRepository
+from motion_core.controllers.task_crud_controller import TaskCrudController
+from motion_core.infrastructure.config.config_manager import ConfigManager
+from motion_core.shared.utils.logger import StandardLogger
 
 # Setup
 repository = SqliteTaskRepository("sqlite:///tasks.db")
@@ -85,7 +85,7 @@ logger = StandardLogger("example")
 crud_controller = TaskCrudController(repository, config, logger)
 
 # Create a task
-from taskdog_core.application.dto.task_request import CreateTaskRequest
+from motion_core.application.dto.task_request import CreateTaskRequest
 request = CreateTaskRequest(name="My Task", priority=100)
 task = crud_controller.create_task(request)
 ```
@@ -98,9 +98,9 @@ task = crud_controller.create_task(request)
 
 ## Related Packages
 
-- [taskdog-server](../taskdog-server/): FastAPI REST API server using this package
-- [taskdog-ui](../taskdog-ui/): CLI and TUI interfaces using this package
-- [taskdog-client](../taskdog-client/): HTTP client library for API access
+- [motion-server](../motion-server/): FastAPI REST API server using this package
+- [motion-ui](../motion-ui/): CLI and TUI interfaces using this package
+- [motion-client](../motion-client/): HTTP client library for API access
 
 For detailed architecture documentation, see [CLAUDE.md](../../CLAUDE.md).
 

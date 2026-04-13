@@ -5,9 +5,9 @@ from datetime import datetime
 import pytest
 from fixtures.repositories import InMemoryNotesRepository
 
-from taskdog_core.application.dto.base import SingleTaskInput
-from taskdog_core.application.use_cases.get_task_detail import GetTaskDetailUseCase
-from taskdog_core.domain.exceptions.task_exceptions import TaskNotFoundException
+from motion_core.application.dto.base import SingleTaskInput
+from motion_core.application.use_cases.get_task_detail import GetTaskDetailUseCase
+from motion_core.domain.exceptions.task_exceptions import TaskNotFoundException
 
 
 class TestGetTaskDetailUseCase:

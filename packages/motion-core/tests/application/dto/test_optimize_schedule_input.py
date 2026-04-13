@@ -4,7 +4,7 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.dto.optimize_schedule_input import OptimizeScheduleInput
+from motion_core.application.dto.optimize_schedule_input import OptimizeScheduleInput
 
 
 class TestOptimizeScheduleInput:

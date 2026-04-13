@@ -7,7 +7,7 @@ Strategies are used directly for workload calculation:
 
 from unittest.mock import Mock
 
-from taskdog_core.application.queries.workload._strategies import (
+from motion_core.application.queries.workload._strategies import (
     ActualScheduleStrategy,
 )
 

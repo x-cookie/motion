@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, patch
 import pytest
 from fastapi import WebSocket
 
-from taskdog_server.websocket.connection_manager import ConnectionManager
+from motion_server.websocket.connection_manager import ConnectionManager
 
 
 class TestConnectionManager:
@@ -206,7 +206,7 @@ class TestConnectionManager:
         assert self.manager.get_connection_count() == 1
         assert self.manager.active_connections[client_id] == mock_websocket2
 
-    @patch("taskdog_server.websocket.connection_manager.logger")
+    @patch("motion_server.websocket.connection_manager.logger")
     async def test_connect_logs_connection(self, mock_logger):
         """Test that connecting a client logs the event."""
         # Arrange
@@ -222,7 +222,7 @@ class TestConnectionManager:
         assert client_id in call_args
         assert "connected" in call_args.lower()
 
-    @patch("taskdog_server.websocket.connection_manager.logger")
+    @patch("motion_server.websocket.connection_manager.logger")
     async def test_disconnect_logs_disconnection(self, mock_logger):
         """Test that disconnecting a client logs the event."""
         # Arrange
@@ -241,7 +241,7 @@ class TestConnectionManager:
         assert client_id in call_args
         assert "disconnected" in call_args.lower()
 
-    @patch("taskdog_server.websocket.connection_manager.logger")
+    @patch("motion_server.websocket.connection_manager.logger")
     async def test_broadcast_failure_logs_warning(self, mock_logger):
         """Test that broadcast failure logs a warning."""
         # Arrange

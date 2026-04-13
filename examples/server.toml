@@ -1,5 +1,5 @@
-# Taskdog Server Configuration
-# Copy this file to ~/.config/taskdog/server.toml and customize as needed.
+# Motion Server Configuration
+# Copy this file to ~/.config/motion/server.toml and customize as needed.
 #
 # This file contains server-specific settings that are NOT shared with
 # CLI/TUI clients (which use cli.toml).
@@ -12,7 +12,7 @@
 # When enabled (default), all requests require a valid API key.
 # When disabled, all requests are allowed without authentication.
 #
-# Can be overridden with environment variable: TASKDOG_AUTH_ENABLED=false
+# Can be overridden with environment variable: MOTION_AUTH_ENABLED=false
 enabled = true
 
 # API Keys
@@ -47,7 +47,7 @@ key = "sk-change-me-generate-a-secure-key"
 #   ws://localhost:8000/ws?token=sk-your-key
 #
 # CLI/TUI:
-#   Configure in ~/.config/taskdog/cli.toml:
+#   Configure in ~/.config/motion/cli.toml:
 #   [api]
 #   api_key = "sk-your-key"
 #

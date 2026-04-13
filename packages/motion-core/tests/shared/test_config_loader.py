@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 import pytest
 
-from taskdog_core.shared.config_loader import ConfigLoader
+from motion_core.shared.config_loader import ConfigLoader
 
 
 class TestLoadToml:

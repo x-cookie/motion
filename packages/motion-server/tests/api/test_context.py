@@ -2,22 +2,22 @@
 
 from unittest.mock import Mock
 
-from taskdog_core.controllers.audit_log_controller import AuditLogController
-from taskdog_core.controllers.bulk_task_controller import BulkTaskController
-from taskdog_core.controllers.query_controller import QueryController
-from taskdog_core.controllers.task_analytics_controller import TaskAnalyticsController
-from taskdog_core.controllers.task_crud_controller import TaskCrudController
-from taskdog_core.controllers.task_lifecycle_controller import TaskLifecycleController
-from taskdog_core.controllers.task_relationship_controller import (
+from motion_core.controllers.audit_log_controller import AuditLogController
+from motion_core.controllers.bulk_task_controller import BulkTaskController
+from motion_core.controllers.query_controller import QueryController
+from motion_core.controllers.task_analytics_controller import TaskAnalyticsController
+from motion_core.controllers.task_crud_controller import TaskCrudController
+from motion_core.controllers.task_lifecycle_controller import TaskLifecycleController
+from motion_core.controllers.task_relationship_controller import (
     TaskRelationshipController,
 )
-from taskdog_core.domain.repositories.notes_repository import NotesRepository
-from taskdog_core.domain.repositories.task_repository import TaskRepository
-from taskdog_core.domain.services.holiday_checker import IHolidayChecker
-from taskdog_core.domain.services.time_provider import ITimeProvider
-from taskdog_core.infrastructure.time_provider import SystemTimeProvider
-from taskdog_core.shared.config_manager import Config
-from taskdog_server.api.context import ApiContext
+from motion_core.domain.repositories.notes_repository import NotesRepository
+from motion_core.domain.repositories.task_repository import TaskRepository
+from motion_core.domain.services.holiday_checker import IHolidayChecker
+from motion_core.domain.services.time_provider import ITimeProvider
+from motion_core.infrastructure.time_provider import SystemTimeProvider
+from motion_core.shared.config_manager import Config
+from motion_server.api.context import ApiContext
 
 
 class TestApiContext:

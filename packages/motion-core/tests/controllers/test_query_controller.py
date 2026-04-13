@@ -5,13 +5,13 @@ from unittest.mock import Mock
 
 import pytest
 
-from taskdog_core.application.dto.query_inputs import (
+from motion_core.application.dto.query_inputs import (
     GetGanttDataInput,
     ListTasksInput,
 )
-from taskdog_core.controllers.query_controller import QueryController
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_core.domain.services.logger import Logger
+from motion_core.controllers.query_controller import QueryController
+from motion_core.domain.entities.task import TaskStatus
+from motion_core.domain.services.logger import Logger
 
 
 class TestQueryController:

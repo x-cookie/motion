@@ -4,10 +4,10 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.dto.base import SingleTaskInput
-from taskdog_core.application.use_cases.start_task import StartTaskUseCase
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_core.domain.exceptions.task_exceptions import TaskAlreadyInProgressError
+from motion_core.application.dto.base import SingleTaskInput
+from motion_core.application.use_cases.start_task import StartTaskUseCase
+from motion_core.domain.entities.task import TaskStatus
+from motion_core.domain.exceptions.task_exceptions import TaskAlreadyInProgressError
 from tests.application.use_cases.status_change_test_base import (
     BaseStatusChangeUseCaseTest,
 )

@@ -16,7 +16,7 @@ from sqlalchemy import create_engine, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from taskdog_core.infrastructure.persistence.database.models import (
+from motion_core.infrastructure.persistence.database.models import (
     Base,
     TagModel,
     TaskModel,

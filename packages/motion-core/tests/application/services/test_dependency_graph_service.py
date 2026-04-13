@@ -2,7 +2,7 @@
 
 import pytest
 
-from taskdog_core.application.services.dependency_graph_service import (
+from motion_core.application.services.dependency_graph_service import (
     DependencyGraphService,
 )
 

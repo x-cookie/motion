@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 import pytest
 
-from taskdog_core.shared.utils.datetime_parser import (
+from motion_core.shared.utils.datetime_parser import (
     format_date_dict,
     parse_date_dict,
     parse_iso_date,

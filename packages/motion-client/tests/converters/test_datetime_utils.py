@@ -3,13 +3,13 @@
 from datetime import date, datetime
 
 import pytest
-from taskdog_client.converters.datetime_utils import (
+from motion_client.converters.datetime_utils import (
     _parse_date_dict,
     _parse_datetime_fields,
     _parse_optional_datetime,
     _parse_required_datetime,
 )
-from taskdog_client.converters.exceptions import ConversionError
+from motion_client.converters.exceptions import ConversionError
 
 
 class TestParseOptionalDatetime:

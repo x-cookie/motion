@@ -4,7 +4,7 @@ import asyncio
 from unittest.mock import MagicMock, patch
 
 import pytest
-from taskdog_client.websocket.websocket_client import (
+from motion_client.websocket.websocket_client import (
     ConnectionState,
     WebSocketClient,
 )
@@ -53,7 +53,7 @@ class TestWebSocketClientConnect:
     """Tests for WebSocketClient.connect()."""
 
     @pytest.mark.asyncio
-    @patch("taskdog_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
+    @patch("motion_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
     async def test_connect_changes_state_to_connecting(self) -> None:
         """Test that connect() changes state to CONNECTING."""
         callback = MagicMock()
@@ -74,7 +74,7 @@ class TestWebSocketClientConnect:
             await client.disconnect()
 
     @pytest.mark.asyncio
-    @patch("taskdog_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
+    @patch("motion_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
     async def test_duplicate_connect_is_no_op(self) -> None:
         """Test that calling connect() twice doesn't create duplicate tasks."""
         callback = MagicMock()
@@ -99,7 +99,7 @@ class TestWebSocketClientConnect:
             await client.disconnect()
 
     @pytest.mark.asyncio
-    @patch("taskdog_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", False)
+    @patch("motion_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", False)
     async def test_connect_without_websockets_library(self) -> None:
         """Test that connect() does nothing when websockets is not available."""
         callback = MagicMock()
@@ -114,7 +114,7 @@ class TestWebSocketClientDisconnect:
     """Tests for WebSocketClient.disconnect()."""
 
     @pytest.mark.asyncio
-    @patch("taskdog_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
+    @patch("motion_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
     async def test_disconnect_changes_state_to_disconnected(self) -> None:
         """Test that disconnect() changes state to DISCONNECTED."""
         callback = MagicMock()
@@ -130,7 +130,7 @@ class TestWebSocketClientDisconnect:
             assert client._state == ConnectionState.DISCONNECTED
 
     @pytest.mark.asyncio
-    @patch("taskdog_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
+    @patch("motion_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
     async def test_disconnect_when_already_disconnected_is_no_op(self) -> None:
         """Test that disconnect() on disconnected client is a no-op."""
         callback = MagicMock()
@@ -141,7 +141,7 @@ class TestWebSocketClientDisconnect:
         assert client._state == ConnectionState.DISCONNECTED
 
     @pytest.mark.asyncio
-    @patch("taskdog_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
+    @patch("motion_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
     async def test_disconnect_cancels_task(self) -> None:
         """Test that disconnect() cancels the background task."""
         callback = MagicMock()
@@ -184,7 +184,7 @@ class TestWebSocketClientConcurrency:
     """Tests for WebSocketClient concurrent access."""
 
     @pytest.mark.asyncio
-    @patch("taskdog_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
+    @patch("motion_client.websocket.websocket_client.WEBSOCKETS_AVAILABLE", True)
     async def test_concurrent_connect_disconnect(self) -> None:
         """Test that concurrent connect/disconnect calls are properly serialized."""
         callback = MagicMock()

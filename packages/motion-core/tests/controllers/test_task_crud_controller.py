@@ -4,9 +4,9 @@ from unittest.mock import MagicMock, Mock
 
 import pytest
 
-from taskdog_core.controllers.task_crud_controller import TaskCrudController
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_core.domain.services.logger import Logger
+from motion_core.controllers.task_crud_controller import TaskCrudController
+from motion_core.domain.entities.task import TaskStatus
+from motion_core.domain.services.logger import Logger
 
 
 class TestTaskCrudController:

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from taskdog_server.config.server_config_manager import (
+from motion_server.config.server_config_manager import (
     ApiKeyEntry,
     AuthConfig,
     ServerConfig,

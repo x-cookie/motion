@@ -1,6 +1,6 @@
-# Taskdog CLI Configuration Example
+# Motion CLI Configuration Example
 #
-# Copy this file to ~/.config/taskdog/cli.toml (or $XDG_CONFIG_HOME/taskdog/cli.toml)
+# Copy this file to ~/.config/motion/cli.toml (or $XDG_CONFIG_HOME/motion/cli.toml)
 # to customize CLI/TUI settings.
 #
 # This config is for UI infrastructure only (API connection, appearance, input defaults).
@@ -10,7 +10,7 @@
 # API Connection Settings
 # =============================================================================
 #
-# Configure how CLI/TUI connects to the taskdog-server.
+# Configure how CLI/TUI connects to the motion-server.
 # CLI/TUI always requires the API server to be running.
 
 [api]
@@ -19,13 +19,13 @@
 host = "127.0.0.1"
 
 # API server port (default: 8000)
-# Must match the port used by taskdog-server
+# Must match the port used by motion-server
 port = 8000
 
 # API key for authentication (REQUIRED when auth is enabled on server)
 # This key must match one configured in server.toml's [[auth.api_keys]] section.
 # Generate a key with: python -c "import secrets; print(f'sk-{secrets.token_hex(24)}')"
-# Environment variable: TASKDOG_API_KEY
+# Environment variable: MOTION_API_KEY
 api_key = "sk-your-api-key-here"
 
 # Examples:
@@ -102,8 +102,8 @@ planned_end_time = "18:30"
 #   - {{tags}}              - Comma-separated tags (empty if none)
 #   - {{created_at}}        - Current datetime
 #
-# Example: template = "~/.config/taskdog/note_template.md"
-# template = "~/.config/taskdog/note_template.md"
+# Example: template = "~/.config/motion/note_template.md"
+# template = "~/.config/motion/note_template.md"
 
 # =============================================================================
 # Gantt Chart Settings
@@ -118,18 +118,18 @@ planned_end_time = "18:30"
 [gantt]
 # Comfortable workload threshold in hours (default: 6.0)
 # Daily hours at or below this value are displayed in green.
-# Environment variable: TASKDOG_GANTT_WORKLOAD_COMFORTABLE_HOURS
+# Environment variable: MOTION_GANTT_WORKLOAD_COMFORTABLE_HOURS
 workload_comfortable_hours = 6.0
 
 # Moderate workload threshold in hours (default: 8.0)
 # Daily hours above comfortable but at or below this value are displayed in yellow.
 # Hours above this value are displayed in red.
-# Environment variable: TASKDOG_GANTT_WORKLOAD_MODERATE_HOURS
+# Environment variable: MOTION_GANTT_WORKLOAD_MODERATE_HOURS
 workload_moderate_hours = 8.0
 
 # Minimum number of days to display in TUI Gantt chart (default: 56, ~2 months)
 # The chart will never show fewer days than this value, even on narrow terminals.
-# Environment variable: TASKDOG_GANTT_MIN_DISPLAY_DAYS
+# Environment variable: MOTION_GANTT_MIN_DISPLAY_DAYS
 # min_display_days = 56
 
 # Examples:
@@ -145,31 +145,31 @@ workload_moderate_hours = 8.0
 # Environment variables override settings in this file:
 #
 # API Connection:
-# - TASKDOG_API_HOST: API server hostname
-# - TASKDOG_API_PORT: API server port
-# - TASKDOG_API_KEY: API key for authentication
+# - MOTION_API_HOST: API server hostname
+# - MOTION_API_PORT: API server port
+# - MOTION_API_KEY: API key for authentication
 #
 # Input Defaults:
-# - TASKDOG_INPUT_DEADLINE_TIME: Default time for deadline input
-# - TASKDOG_INPUT_PLANNED_START_TIME: Default time for planned_start input
-# - TASKDOG_INPUT_PLANNED_END_TIME: Default time for planned_end input
+# - MOTION_INPUT_DEADLINE_TIME: Default time for deadline input
+# - MOTION_INPUT_PLANNED_START_TIME: Default time for planned_start input
+# - MOTION_INPUT_PLANNED_END_TIME: Default time for planned_end input
 #
 # Gantt Chart:
-# - TASKDOG_GANTT_WORKLOAD_COMFORTABLE_HOURS: Comfortable workload threshold
-# - TASKDOG_GANTT_WORKLOAD_MODERATE_HOURS: Moderate workload threshold
-# - TASKDOG_GANTT_MIN_DISPLAY_DAYS: Minimum days to display in TUI Gantt chart
+# - MOTION_GANTT_WORKLOAD_COMFORTABLE_HOURS: Comfortable workload threshold
+# - MOTION_GANTT_WORKLOAD_MODERATE_HOURS: Moderate workload threshold
+# - MOTION_GANTT_MIN_DISPLAY_DAYS: Minimum days to display in TUI Gantt chart
 #
 # Examples:
 #
-#   export TASKDOG_API_HOST=192.168.1.100
-#   export TASKDOG_API_PORT=3000
-#   export TASKDOG_API_KEY=sk-your-api-key
-#   export TASKDOG_INPUT_DEADLINE_TIME=17:00
-#   taskdog table
+#   export MOTION_API_HOST=192.168.1.100
+#   export MOTION_API_PORT=3000
+#   export MOTION_API_KEY=sk-your-api-key
+#   export MOTION_INPUT_DEADLINE_TIME=17:00
+#   motion table
 #
 # Or inline:
 #
-#   TASKDOG_API_KEY=sk-your-key taskdog table
+#   MOTION_API_KEY=sk-your-key motion table
 
 # =============================================================================
 # Notes
@@ -178,8 +178,8 @@ workload_moderate_hours = 8.0
 # 1. If this file doesn't exist, defaults are used (127.0.0.1:8000)
 # 2. Priority: environment variables > cli.toml > defaults
 # 3. Server must be running before using CLI/TUI
-# 4. Start server with: taskdog-server
-# 5. Check server status: systemctl --user status taskdog-server
+# 4. Start server with: motion-server
+# 5. Check server status: systemctl --user status motion-server
 # 6. Test connection: curl http://127.0.0.1:8000/health
 #
 # For more details, see CLI_CONFIG.md

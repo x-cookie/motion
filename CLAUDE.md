@@ -4,51 +4,51 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Taskdog is a task management system built with Python. It provides a CLI/TUI interface and a REST API server for managing tasks with time tracking, dependencies, schedule optimization, and rich terminal output. The codebase follows Clean Architecture principles and is organized as a UV workspace monorepo.
+Motion is a task management system built with Python. It provides a CLI/TUI interface and a REST API server for managing tasks with time tracking, dependencies, schedule optimization, and rich terminal output. The codebase follows Clean Architecture principles and is organized as a UV workspace monorepo.
 
 ### Monorepo Structure
 
 The repository uses UV workspace with five packages:
 
-**taskdog-core** (`packages/taskdog-core/`): Core business logic and infrastructure
+**motion-core** (`packages/motion-core/`): Core business logic and infrastructure
 
 - Domain entities, use cases, repositories, validators
 - SQLite + SQLAlchemy ORM with Alembic migrations
 - Schedule optimization algorithms (9 strategies)
 - No UI dependencies - pure business logic
 
-**taskdog-server** (`packages/taskdog-server/`): FastAPI REST API server
+**motion-server** (`packages/motion-server/`): FastAPI REST API server
 
-- Depends on: taskdog-core
+- Depends on: motion-core
 - FastAPI application with automatic OpenAPI docs
 - API routers: tasks, lifecycle, relationships, analytics, notes, audit, websocket
 - Pydantic models for request/response validation
 - Health check and comprehensive error handling
 
-**taskdog-client** (`packages/taskdog-client/`): HTTP client for server communication
+**motion-client** (`packages/motion-client/`): HTTP client for server communication
 
-- Depends on: taskdog-core
-- TaskdogClient class for API communication
+- Depends on: motion-core
+- MotionClient class for API communication
 - Used by CLI/TUI to communicate with the server
 
-**taskdog-ui** (`packages/taskdog-ui/`): CLI and TUI interfaces
+**motion-ui** (`packages/motion-ui/`): CLI and TUI interfaces
 
-- Depends on: taskdog-core, taskdog-client
+- Depends on: motion-core, motion-client
 - Click-based CLI commands with Rich output
 - Textual-based full-screen TUI
 - Renderers for tables, Gantt charts, and markdown notes
 
-**taskdog-mcp** (`packages/taskdog-mcp/`): MCP server for Claude Desktop integration
+**motion-mcp** (`packages/motion-mcp/`): MCP server for Claude Desktop integration
 
-- Depends on: taskdog-client
+- Depends on: motion-client
 - Model Context Protocol server implementation
 - Enables Claude Desktop to manage tasks via natural language
 
 ### Data Storage & Configuration
 
-**Tasks**: Stored in SQLite database `tasks.db` at `$XDG_DATA_HOME/taskdog/tasks.db` (fallback: `~/.local/share/taskdog/tasks.db`)
+**Tasks**: Stored in SQLite database `tasks.db` at `$XDG_DATA_HOME/motion/tasks.db` (fallback: `~/.local/share/motion/tasks.db`)
 
-**Config**: Optional TOML files at `$XDG_CONFIG_HOME/taskdog/` (fallback: `~/.config/taskdog/`)
+**Config**: Optional TOML files at `$XDG_CONFIG_HOME/motion/` (fallback: `~/.config/motion/`)
 
 - **core.toml** (business logic):
   - Sections: `[time]`, `[region]`, `[storage]`
@@ -63,8 +63,8 @@ The repository uses UV workspace with five packages:
   - Sections: `[api]`
   - Settings: host, port, api_key
 - Priority: Environment vars > CLI args > Config file > Defaults
-- Server host/port: CLI arguments (`taskdog-server --host --port`)
-- CLI/TUI connection: `cli.toml` or `TASKDOG_API_HOST`/`TASKDOG_API_PORT` env vars
+- Server host/port: CLI arguments (`motion-server --host --port`)
+- CLI/TUI connection: `cli.toml` or `MOTION_API_HOST`/`MOTION_API_PORT` env vars
 - Access via `ctx.obj.config` (CLI) or `context.config` (TUI)
 
 ## Development Commands
@@ -73,23 +73,23 @@ The repository uses UV workspace with five packages:
 # Setup (from workspace root)
 make install-dev                 # Install all packages with dev dependencies (editable mode)
 make install-local               # Install all packages locally for development (alias for install-core install-server install-ui)
-make install                     # Install taskdog and taskdog-server as global commands via uv tool
+make install                     # Install motion and motion-server as global commands via uv tool
 
 # Per-package installation (for development)
-make install-core                # Install taskdog-core only
-make install-server              # Install taskdog-server (includes core)
-make install-ui                  # Install taskdog-ui (includes core)
+make install-core                # Install motion-core only
+make install-server              # Install motion-server (includes core)
+make install-ui                  # Install motion-ui (includes core)
 
 # Testing (all tests include coverage report)
 make test                        # Run all tests with coverage (core + server + ui)
-make test-core                   # Run taskdog-core tests with coverage
-make test-server                 # Run taskdog-server tests with coverage
-make test-ui                     # Run taskdog-ui tests with coverage
+make test-core                   # Run motion-core tests with coverage
+make test-server                 # Run motion-server tests with coverage
+make test-ui                     # Run motion-ui tests with coverage
 
 # Single test file (run from package directory)
-cd packages/taskdog-core && PYTHONPATH=src uv run python -m pytest tests/test_module.py -v
+cd packages/motion-core && PYTHONPATH=src uv run python -m pytest tests/test_module.py -v
 # Specific test method
-cd packages/taskdog-core && PYTHONPATH=src uv run python -m pytest tests/test_module.py::TestClass::test_method -v
+cd packages/motion-core && PYTHONPATH=src uv run python -m pytest tests/test_module.py::TestClass::test_method -v
 
 # Code Quality
 make lint                        # Ruff linter on all packages
@@ -103,26 +103,26 @@ make uninstall                   # Uninstall all global commands (removes system
 make reinstall                   # Clean + reinstall all global commands
 
 # Running the applications
-taskdog --help                   # CLI/TUI (after make install)
-taskdog-server --help            # API server (after make install)
+motion --help                   # CLI/TUI (after make install)
+motion-server --help            # API server (after make install)
 
 # Development mode (without installation)
-cd packages/taskdog-ui && PYTHONPATH=src uv run python -m taskdog.cli_main --help
-cd packages/taskdog-server && PYTHONPATH=src uv run python -m taskdog_server.main --help
+cd packages/motion-ui && PYTHONPATH=src uv run python -m motion.cli_main --help
+cd packages/motion-server && PYTHONPATH=src uv run python -m motion_server.main --help
 
 # Server examples
-taskdog-server                   # Start on default 127.0.0.1:8000
-taskdog-server --host 0.0.0.0 --port 3000  # Custom host/port
-taskdog-server --reload          # Auto-reload for development
+motion-server                   # Start on default 127.0.0.1:8000
+motion-server --host 0.0.0.0 --port 3000  # Custom host/port
+motion-server --reload          # Auto-reload for development
 # API docs: http://localhost:8000/docs
 # Health check: http://localhost:8000/health
 
 # Systemd user service (installed automatically with make install)
-systemctl --user start taskdog-server    # Start the service
-systemctl --user stop taskdog-server     # Stop the service
-systemctl --user status taskdog-server   # Check service status
-systemctl --user restart taskdog-server  # Restart the service
-journalctl --user -u taskdog-server -f   # View logs in real-time
+systemctl --user start motion-server    # Start the service
+systemctl --user stop motion-server     # Stop the service
+systemctl --user status motion-server   # Check service status
+systemctl --user restart motion-server  # Restart the service
+journalctl --user -u motion-server -f   # View logs in real-time
 # See contrib/README.md for detailed documentation
 ```
 
@@ -132,17 +132,17 @@ journalctl --user -u taskdog-server -f   # View logs in real-time
 
 **Package Navigation:**
 
-- Core business logic changes: `packages/taskdog-core/src/taskdog_core/`
-- API server changes: `packages/taskdog-server/src/taskdog_server/`
-- CLI/TUI changes: `packages/taskdog-ui/src/taskdog/`
+- Core business logic changes: `packages/motion-core/src/motion_core/`
+- API server changes: `packages/motion-server/src/motion_server/`
+- CLI/TUI changes: `packages/motion-ui/src/motion/`
 
 **Adding Features:**
 
-1. Add domain entities/use cases in `taskdog-core`
-2. Expose via controllers (TaskController/QueryController) in `taskdog-core`
-3. Add API endpoints in `taskdog-server` (if needed)
-4. Add CLI commands in `taskdog-ui` (if needed)
-5. Add TUI commands in `taskdog-ui` (if needed)
+1. Add domain entities/use cases in `motion-core`
+2. Expose via controllers (TaskController/QueryController) in `motion-core`
+3. Add API endpoints in `motion-server` (if needed)
+4. Add CLI commands in `motion-ui` (if needed)
+5. Add TUI commands in `motion-ui` (if needed)
 
 **Testing Workflow:**
 
@@ -159,10 +159,10 @@ journalctl --user -u taskdog-server -f   # View logs in real-time
 
 **Import Conventions:**
 
-- Core package: `from taskdog_core.domain.entities.task import Task`
-- Server package: `from taskdog_server.api.models.requests import CreateTaskRequest`
-- UI package: `from taskdog.cli.commands.add import add_command`
-- Cross-package: Server and UI import from `taskdog_core`
+- Core package: `from motion_core.domain.entities.task import Task`
+- Server package: `from motion_server.api.models.requests import CreateTaskRequest`
+- UI package: `from motion.cli.commands.add import add_command`
+- Cross-package: Server and UI import from `motion_core`
 
 ## Architecture
 
@@ -170,16 +170,16 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
 
 ### Package Structure
 
-**taskdog-core** contains Domain, Application, Infrastructure (persistence), and Shared layers:
+**motion-core** contains Domain, Application, Infrastructure (persistence), and Shared layers:
 
-**Domain** (`packages/taskdog-core/src/taskdog_core/domain/`): Core business logic, no external dependencies
+**Domain** (`packages/motion-core/src/motion_core/domain/`): Core business logic, no external dependencies
 
 - `entities/`: Task, TaskStatus
 - `services/`: ILogger, ITimeProvider, IHolidayChecker (interfaces for testability)
 - `exceptions/`: TaskNotFoundException, TaskValidationError, TaskAlreadyFinishedError, TaskNotStartedError
 - `constants.py`: Domain constants (DEFAULT_PRIORITY, etc.)
 
-**Application** (`packages/taskdog-core/src/taskdog_core/application/`): Business logic orchestration
+**Application** (`packages/motion-core/src/motion_core/application/`): Business logic orchestration
 
 - `use_cases/`: Each business operation is a separate use case with `execute(input_dto)` method
   - Base classes: `UseCase[TInput, TOutput]`, `StatusChangeUseCase` (Template Method pattern)
@@ -195,13 +195,13 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
   - `queries/filters/`: Query filters (StatusFilter, DateRangeFilter, TagFilter, etc.)
 - `dto/`: Input/Output DTOs (CreateTaskRequest, OptimizationResult, SchedulingFailure, etc.)
 
-**Infrastructure** (`packages/taskdog-core/src/taskdog_core/infrastructure/`): External concerns
+**Infrastructure** (`packages/motion-core/src/motion_core/infrastructure/`): External concerns
 
 - `persistence/database/`: SqliteTaskRepository, SqliteNotesRepository (SQLAlchemy ORM, sessionmaker for transactions, indexed queries)
 - `persistence/mappers/`: TaskDbMapper for entity-to-database mapping
 - `config/`: ConfigManager (loads TOML config with fallback to defaults)
 
-**Controllers** (`packages/taskdog-core/src/taskdog_core/controllers/`): Unified interface for task operations
+**Controllers** (`packages/motion-core/src/motion_core/controllers/`): Unified interface for task operations
 
 - `BaseTaskController`: Abstract base class for all task controllers
 - `TaskCrudController`: Orchestrates CRUD operations (create, read, update, delete)
@@ -224,13 +224,13 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
   - Records all task operations for audit trail
 - All controllers used by: API server directly; CLI/TUI via HTTP API
 
-**Shared** (`packages/taskdog-core/src/taskdog_core/shared/`): Cross-cutting utilities
+**Shared** (`packages/motion-core/src/motion_core/shared/`): Cross-cutting utilities
 
 - `utils/xdg_utils.py`: XDG paths (get_tasks_file, get_config_file)
 
-**taskdog-server** contains FastAPI-specific presentation layer:
+**motion-server** contains FastAPI-specific presentation layer:
 
-**API** (`packages/taskdog-server/src/taskdog_server/api/`):
+**API** (`packages/motion-server/src/motion_server/api/`):
 
 - `app.py`: FastAPI application setup with exception handlers
 - `routers/`: API route handlers
@@ -245,26 +245,26 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
 - `dependencies.py`: FastAPI dependency injection (repository, controllers)
 - `context.py`: ApiContext (similar to CliContext for DI)
 
-**taskdog-ui** contains CLI/TUI-specific presentation layer:
+**motion-ui** contains CLI/TUI-specific presentation layer:
 
-**CLI** (`packages/taskdog-ui/src/taskdog/cli/`):
+**CLI** (`packages/motion-ui/src/motion/cli/`):
 
 - `cli_main.py`: Click application entry point
 - `commands/`: Click command implementations (add, start, done, table, gantt, etc.)
 - `context.py`: CliContext (DI container for console_writer, api_client, config)
 - Error handlers: `@handle_task_errors`, `@handle_command_errors` decorators
 
-**Console** (`packages/taskdog-ui/src/taskdog/console/`):
+**Console** (`packages/motion-ui/src/motion/console/`):
 
 - `ConsoleWriter` abstraction for all CLI output
 - `RichConsoleWriter` implementation (Rich-based formatting)
 
-**Renderers** (`packages/taskdog-ui/src/taskdog/renderers/`):
+**Renderers** (`packages/motion-ui/src/motion/renderers/`):
 
 - `RichTableRenderer`: Task table with all fields, strikethrough for finished tasks
 - `RichGanttRenderer`: Timeline with daily hours, status symbols (◆), weekend coloring, workload summary
 
-**TUI** (`packages/taskdog-ui/src/taskdog/tui/`):
+**TUI** (`packages/motion-ui/src/motion/tui/`):
 
 - `app.py`: Textual application main screen
 - `commands/`: Command Pattern (CommandRegistry, CommandFactory, TUICommandBase)
@@ -275,7 +275,7 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
   - `task_ui_manager.py`: Task UI state management
 - `styles/`: TCSS stylesheets (included via package_data)
 
-**Additional UI Directories** (`packages/taskdog-ui/src/taskdog/`):
+**Additional UI Directories** (`packages/motion-ui/src/motion/`):
 
 - `view_models/`: View model classes for UI data representation
 - `mappers/`: Data mappers between API responses and view models
@@ -285,20 +285,20 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
 - `presenters/`: Presentation logic for formatted output
 - `formatters/`: Output formatting utilities
 
-**Shared** (`packages/taskdog-ui/src/taskdog/shared/`):
+**Shared** (`packages/motion-ui/src/motion/shared/`):
 
 - `click_types/`: Custom Click parameter types (DateTimeWithDefault adds 18:00:00 when only date provided)
 
 ### Dependency Injection
 
-**CLI** (`taskdog-ui`): `CliContext` dataclass (console_writer, api_client, config) passed via `ctx.obj`
-**TUI** (`taskdog-ui`): `TUIContext` dataclass (api_client, state, config) + CommandFactory for command instantiation (state: TUIState for UI state management)
-**API** (`taskdog-server`): `ApiContext` dataclass + FastAPI dependency injection via `dependencies.py`
+**CLI** (`motion-ui`): `CliContext` dataclass (console_writer, api_client, config) passed via `ctx.obj`
+**TUI** (`motion-ui`): `TUIContext` dataclass (api_client, state, config) + CommandFactory for command instantiation (state: TUIState for UI state management)
+**API** (`motion-server`): `ApiContext` dataclass + FastAPI dependency injection via `dependencies.py`
 **Communication**: CLI/TUI access all data via HTTP API client; only server directly uses repositories and controllers
 
 ### Key Components
 
-**Task Entity** (`packages/taskdog-core/src/taskdog_core/domain/entities/task.py`)
+**Task Entity** (`packages/motion-core/src/motion_core/domain/entities/task.py`)
 
 - Fields: id, name, priority, status, planned_start/end, deadline, actual_start/end, estimated_duration, daily_allocations, is_fixed, depends_on, tags, is_archived
 - Statuses: PENDING, IN_PROGRESS, COMPLETED, CANCELED
@@ -306,32 +306,32 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
 - Properties: actual_duration_hours, is_active, is_finished, can_be_modified, is_schedulable
 - Archive Design: is_archived is a boolean flag (not a status) to preserve original task state when soft-deleted
 
-**Repository** (`packages/taskdog-core/src/taskdog_core/infrastructure/persistence/database/sqlite_task_repository.py`)
+**Repository** (`packages/motion-core/src/motion_core/infrastructure/persistence/database/sqlite_task_repository.py`)
 
 - `SqliteTaskRepository`: SQLAlchemy ORM with sessionmaker for transactional writes
 - Automatic rollback on errors via SQLAlchemy session management
 - Indexed queries for efficient lookups and filtering
 - Used by API server only (CLI/TUI access via HTTP API, not directly)
 
-**Domain Services** (`packages/taskdog-core/src/taskdog_core/domain/services/`):
+**Domain Services** (`packages/motion-core/src/motion_core/domain/services/`):
 
 - `ITimeProvider`: Interface for current time (enables testing with fixed timestamps)
 - `IHolidayChecker`: Interface for holiday checking (used by workload calculations)
 - `ILogger`: Interface for logging abstraction
 
-**Renderers** (`packages/taskdog-ui/src/taskdog/renderers/`)
+**Renderers** (`packages/motion-ui/src/motion/renderers/`)
 
 - `RichTableRenderer`: Task table with all fields, strikethrough for finished tasks (uses task.is_finished)
 - `RichGanttRenderer`: Timeline with daily hours, status symbols (◆), weekend coloring, workload summary, strikethrough for finished tasks
 - Strikethrough applied only to COMPLETED/CANCELED tasks (task.is_finished), not archived tasks
 
-**CLI Patterns** (`packages/taskdog-ui/src/taskdog/cli/`)
+**CLI Patterns** (`packages/motion-ui/src/motion/cli/`)
 
 - `update_helpers.py`: Shared helper utilities for task update operations
 - `error_handler.py`: `@handle_task_errors`, `@handle_command_errors` decorators
 - Batch operations: Loop + per-task error handling (start, done, pause, rm, archive)
 
-**Controllers** (`packages/taskdog-core/src/taskdog_core/controllers/`)
+**Controllers** (`packages/motion-core/src/motion_core/controllers/`)
 
 - `TaskCrudController`: Orchestrates CRUD operations (create, update, delete)
 - `TaskLifecycleController`: Orchestrates lifecycle operations (start, complete, pause, cancel, reopen)
@@ -343,7 +343,7 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
 - All controllers instantiate use cases, construct Request DTOs, handle config defaults
 - Used by: API server directly; CLI/TUI via HTTP API client
 
-**TUI Command Pattern** (`packages/taskdog-ui/src/taskdog/tui/commands/`)
+**TUI Command Pattern** (`packages/motion-ui/src/motion/tui/commands/`)
 
 - `@command_registry.register("name")` for automatic registration
 - `TUICommandBase`: Abstract base with helpers (get_selected_task, reload_tasks, notify_*)
@@ -351,7 +351,7 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
 - `CommandFactory`: Creates commands with DI
 - TUI services: WebSocketHandler, EventHandlerRegistry, TaskUIManager
 
-**API Patterns** (`packages/taskdog-server/src/taskdog_server/api/`)
+**API Patterns** (`packages/motion-server/src/motion_server/api/`)
 
 - FastAPI routers: tasks, lifecycle, relationships, analytics, notes, audit, websocket
 - Pydantic models for automatic request/response validation
@@ -376,7 +376,7 @@ Clean Architecture with 5 layers across five packages: **Domain** ← **Applicat
 
 ### CLI Commands
 
-Commands in `packages/taskdog-ui/src/taskdog/cli/commands/`, registered in `cli_main.py`:
+Commands in `packages/motion-ui/src/motion/cli/commands/`, registered in `cli_main.py`:
 
 **Creation & Viewing**
 
@@ -435,7 +435,7 @@ Commands in `packages/taskdog-ui/src/taskdog/cli/commands/`, registered in `cli_
 
 ### Design Principles
 
-**Core Philosophy**: Taskdog is designed for **individual task management** following GTD principles. See [DESIGN_PHILOSOPHY.md](docs/DESIGN_PHILOSOPHY.md) for detailed rationale.
+**Core Philosophy**: Motion is designed for **individual task management** following GTD principles. See [DESIGN_PHILOSOPHY.md](docs/DESIGN_PHILOSOPHY.md) for detailed rationale.
 
 **Key Design Decisions**:
 
@@ -454,11 +454,11 @@ Commands in `packages/taskdog-ui/src/taskdog/cli/commands/`, registered in `cli_
 **Implementation Principles**:
 
 1. **Monorepo with UV Workspace**: Five packages with clear separation of concerns
-   - `taskdog-core`: Pure business logic (no UI/API dependencies)
-   - `taskdog-server`: FastAPI REST API (depends on core)
-   - `taskdog-client`: HTTP client library (depends on core)
-   - `taskdog-ui`: CLI/TUI interfaces (depends on core, client)
-   - `taskdog-mcp`: MCP server for Claude Desktop (depends on client)
+   - `motion-core`: Pure business logic (no UI/API dependencies)
+   - `motion-server`: FastAPI REST API (depends on core)
+   - `motion-client`: HTTP client library (depends on core)
+   - `motion-ui`: CLI/TUI interfaces (depends on core, client)
+   - `motion-mcp`: MCP server for Claude Desktop (depends on client)
 2. **Clean Architecture**: Strict layer dependencies (Presentation → Application → Domain ← Infrastructure)
 3. **Specialized Controllers**: Six specialized controllers in core package (SRP - Single Responsibility Principle)
    - `TaskCrudController`, `TaskLifecycleController`, `TaskRelationshipController`, `TaskAnalyticsController`, `QueryController`, `AuditLogController`
@@ -481,7 +481,7 @@ Commands in `packages/taskdog-ui/src/taskdog/cli/commands/`, registered in `cli_
 
 ### API Server Endpoints
 
-The FastAPI server (`taskdog-server`) provides a REST API with automatic OpenAPI documentation at `/docs`:
+The FastAPI server (`motion-server`) provides a REST API with automatic OpenAPI documentation at `/docs`:
 
 **Task Management** (`/api/v1/tasks/`)
 

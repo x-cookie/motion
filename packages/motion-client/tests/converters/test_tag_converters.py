@@ -1,6 +1,6 @@
 """Tests for tag converter functions."""
 
-from taskdog_client.converters.tag_converters import (
+from motion_client.converters.tag_converters import (
     convert_to_tag_statistics_output,
 )
 

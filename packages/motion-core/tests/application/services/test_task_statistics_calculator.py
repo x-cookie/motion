@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from taskdog_core.application.services.task_statistics_calculator import (
+from motion_core.application.services.task_statistics_calculator import (
     TaskStatisticsCalculator,
 )
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestTaskStatisticsCalculator:

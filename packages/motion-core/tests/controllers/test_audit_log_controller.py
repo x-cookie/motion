@@ -5,16 +5,16 @@ from unittest.mock import Mock
 
 import pytest
 
-from taskdog_core.application.dto.audit_log_dto import (
+from motion_core.application.dto.audit_log_dto import (
     AuditEvent,
     AuditLogListOutput,
     AuditLogOutput,
     AuditQuery,
 )
-from taskdog_core.controllers.audit_log_controller import AuditLogController
-from taskdog_core.domain.repositories.audit_log_repository import AuditLogRepository
-from taskdog_core.domain.services.logger import Logger
-from taskdog_core.domain.services.time_provider import ITimeProvider
+from motion_core.controllers.audit_log_controller import AuditLogController
+from motion_core.domain.repositories.audit_log_repository import AuditLogRepository
+from motion_core.domain.services.logger import Logger
+from motion_core.domain.services.time_provider import ITimeProvider
 
 
 class TestAuditLogController:

@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 from unittest.mock import patch
 
-from taskdog_core.shared.xdg_utils import XDGDirectories
+from motion_core.shared.xdg_utils import XDGDirectories
 
 
 class TestXDGDirectories:

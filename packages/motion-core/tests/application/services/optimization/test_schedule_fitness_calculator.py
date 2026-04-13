@@ -4,12 +4,12 @@ from datetime import date, datetime
 
 import pytest
 
-from taskdog_core.application.services.optimization.schedule_fitness_calculator import (
+from motion_core.application.services.optimization.schedule_fitness_calculator import (
     DEADLINE_PENALTY_MULTIPLIER,
     SCHEDULED_TASK_BONUS,
     ScheduleFitnessCalculator,
 )
-from taskdog_core.domain.entities.task import Task
+from motion_core.domain.entities.task import Task
 
 
 class TestScheduleFitnessCalculator:

@@ -3,7 +3,7 @@
 from unittest.mock import Mock, patch
 
 import pytest
-from taskdog_client.bulk_client import BulkClient
+from motion_client.bulk_client import BulkClient
 
 
 class TestBulkClient:
@@ -67,7 +67,7 @@ class TestBulkClient:
             ("bulk_delete", "delete"),
         ],
     )
-    @patch("taskdog_client.bulk_client.convert_to_task_operation_output")
+    @patch("motion_client.bulk_client.convert_to_task_operation_output")
     def test_bulk_operation_makes_correct_api_call(
         self, mock_convert, method_name, expected_operation
     ):
@@ -86,7 +86,7 @@ class TestBulkClient:
             json={"task_ids": [1, 2]},
         )
 
-    @patch("taskdog_client.bulk_client.convert_to_task_operation_output")
+    @patch("motion_client.bulk_client.convert_to_task_operation_output")
     def test_bulk_operation_parses_success_results(self, mock_convert):
         """Test parsing successful results from bulk operation."""
         mock_output = Mock()
@@ -103,7 +103,7 @@ class TestBulkClient:
         assert result.results[0].task == mock_output
         assert result.results[0].error is None
 
-    @patch("taskdog_client.bulk_client.convert_to_task_operation_output")
+    @patch("motion_client.bulk_client.convert_to_task_operation_output")
     def test_bulk_operation_parses_failure_results(self, mock_convert):
         """Test parsing failed results from bulk operation."""
         self.mock_base._request_json.return_value = self._make_bulk_response(
@@ -119,7 +119,7 @@ class TestBulkClient:
         assert result.results[0].error == "Task with ID 99 not found"
         mock_convert.assert_not_called()
 
-    @patch("taskdog_client.bulk_client.convert_to_task_operation_output")
+    @patch("motion_client.bulk_client.convert_to_task_operation_output")
     def test_bulk_operation_parses_mixed_results(self, mock_convert):
         """Test parsing mixed success/failure results."""
         mock_output = Mock()
@@ -159,7 +159,7 @@ class TestBulkClient:
 
     def test_bulk_operation_propagates_errors(self):
         """Test bulk operations propagate HTTP errors from _request_json."""
-        from taskdog_core.domain.exceptions.task_exceptions import (
+        from motion_core.domain.exceptions.task_exceptions import (
             ServerConnectionError,
         )
 

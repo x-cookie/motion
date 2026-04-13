@@ -2,11 +2,11 @@
 
 import pytest
 
-from taskdog_core.application.dto.create_task_input import CreateTaskInput
-from taskdog_core.application.dto.set_task_tags_input import SetTaskTagsInput
-from taskdog_core.application.use_cases.create_task import CreateTaskUseCase
-from taskdog_core.application.use_cases.set_task_tags import SetTaskTagsUseCase
-from taskdog_core.domain.exceptions.task_exceptions import (
+from motion_core.application.dto.create_task_input import CreateTaskInput
+from motion_core.application.dto.set_task_tags_input import SetTaskTagsInput
+from motion_core.application.use_cases.create_task import CreateTaskUseCase
+from motion_core.application.use_cases.set_task_tags import SetTaskTagsUseCase
+from motion_core.domain.exceptions.task_exceptions import (
     TaskNotFoundException,
     TaskValidationError,
 )

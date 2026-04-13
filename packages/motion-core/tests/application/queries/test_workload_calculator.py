@@ -8,11 +8,11 @@ from datetime import date, datetime
 
 import pytest
 
-from taskdog_core.application.queries.workload._strategies import (
+from motion_core.application.queries.workload._strategies import (
     ActualScheduleStrategy,
     WeekdayOnlyStrategy,
 )
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestWeekdayOnlyStrategy:

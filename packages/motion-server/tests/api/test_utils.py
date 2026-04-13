@@ -5,7 +5,7 @@ from datetime import date
 import pytest
 from fastapi import HTTPException
 
-from taskdog_server.api.utils import parse_iso_date
+from motion_server.api.utils import parse_iso_date
 
 
 class TestParseIsoDate:

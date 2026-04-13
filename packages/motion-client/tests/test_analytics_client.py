@@ -4,7 +4,7 @@ from datetime import datetime
 from unittest.mock import Mock, patch
 
 import pytest
-from taskdog_client.analytics_client import AnalyticsClient
+from motion_client.analytics_client import AnalyticsClient
 
 
 class TestAnalyticsClient:
@@ -16,7 +16,7 @@ class TestAnalyticsClient:
         self.mock_base = Mock()
         self.client = AnalyticsClient(self.mock_base)
 
-    @patch("taskdog_client.analytics_client.convert_to_statistics_output")
+    @patch("motion_client.analytics_client.convert_to_statistics_output")
     def test_calculate_statistics(self, mock_convert):
         """Test calculate_statistics makes correct API call."""
         self.mock_base._request_json.return_value = {"completion": {}}
@@ -31,7 +31,7 @@ class TestAnalyticsClient:
         )
         assert result == mock_output
 
-    @patch("taskdog_client.analytics_client.convert_to_optimization_output")
+    @patch("motion_client.analytics_client.convert_to_optimization_output")
     def test_optimize_schedule(self, mock_convert):
         """Test optimize_schedule makes correct API call."""
         self.mock_base._request_json.return_value = {"summary": {}}

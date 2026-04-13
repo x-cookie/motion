@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from taskdog_core.application.dto.audit_log_dto import AuditEvent
+from motion_core.application.dto.audit_log_dto import AuditEvent
 
 
 class TestAuditLogsRouter:

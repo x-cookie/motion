@@ -2,7 +2,7 @@
 
 from datetime import date, datetime
 
-from taskdog_core.infrastructure.time_provider import SystemTimeProvider
+from motion_core.infrastructure.time_provider import SystemTimeProvider
 
 
 class TestSystemTimeProvider:
@@ -62,7 +62,7 @@ class TestSystemTimeProvider:
 
     def test_implements_interface(self):
         """Test that SystemTimeProvider implements ITimeProvider interface."""
-        from taskdog_core.domain.services.time_provider import ITimeProvider
+        from motion_core.domain.services.time_provider import ITimeProvider
 
         provider = SystemTimeProvider()
 

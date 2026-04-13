@@ -4,10 +4,10 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from taskdog_core.application.dto.task_operation_output import TaskOperationOutput
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_server.websocket.broadcaster import WebSocketEventBroadcaster
-from taskdog_server.websocket.connection_manager import ConnectionManager
+from motion_core.application.dto.task_operation_output import TaskOperationOutput
+from motion_core.domain.entities.task import TaskStatus
+from motion_server.websocket.broadcaster import WebSocketEventBroadcaster
+from motion_server.websocket.connection_manager import ConnectionManager
 
 
 class TestWebSocketEventBroadcaster:

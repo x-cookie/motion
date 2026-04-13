@@ -1,7 +1,7 @@
-"""Pytest fixtures for taskdog-server tests.
+"""Pytest fixtures for motion-server tests.
 
-This module provides shared fixtures for all tests in taskdog-server.
-Task fixtures are imported from taskdog-core's shared fixtures module.
+This module provides shared fixtures for all tests in motion-server.
+Task fixtures are imported from motion-core's shared fixtures module.
 """
 
 import sys
@@ -12,9 +12,9 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-# Add taskdog-core tests to path for shared fixtures
+# Add motion-core tests to path for shared fixtures
 _core_tests_path = (
-    Path(__file__).parent.parent.parent / "taskdog-core" / "tests"
+    Path(__file__).parent.parent.parent / "motion-core" / "tests"
 ).resolve()
 if str(_core_tests_path) not in sys.path:
     sys.path.insert(0, str(_core_tests_path))
@@ -33,40 +33,40 @@ from fixtures.pytest_fixtures import (  # noqa: E402, F401
 )
 from fixtures.repositories import InMemoryTaskRepository  # noqa: E402
 
-# Import from taskdog-core
-from taskdog_core.controllers.audit_log_controller import (  # noqa: E402
+# Import from motion-core
+from motion_core.controllers.audit_log_controller import (  # noqa: E402
     AuditLogController,
 )
-from taskdog_core.controllers.bulk_task_controller import (  # noqa: E402
+from motion_core.controllers.bulk_task_controller import (  # noqa: E402
     BulkTaskController,
 )
-from taskdog_core.controllers.query_controller import QueryController  # noqa: E402
-from taskdog_core.controllers.task_analytics_controller import (  # noqa: E402
+from motion_core.controllers.query_controller import QueryController  # noqa: E402
+from motion_core.controllers.task_analytics_controller import (  # noqa: E402
     TaskAnalyticsController,
 )
-from taskdog_core.controllers.task_crud_controller import (  # noqa: E402
+from motion_core.controllers.task_crud_controller import (  # noqa: E402
     TaskCrudController,
 )
-from taskdog_core.controllers.task_lifecycle_controller import (  # noqa: E402
+from motion_core.controllers.task_lifecycle_controller import (  # noqa: E402
     TaskLifecycleController,
 )
-from taskdog_core.controllers.task_relationship_controller import (  # noqa: E402
+from motion_core.controllers.task_relationship_controller import (  # noqa: E402
     TaskRelationshipController,
 )
-from taskdog_core.domain.services.logger import Logger  # noqa: E402
-from taskdog_core.infrastructure.persistence.database.sqlite_audit_log_repository import (  # noqa: E402
+from motion_core.domain.services.logger import Logger  # noqa: E402
+from motion_core.infrastructure.persistence.database.sqlite_audit_log_repository import (  # noqa: E402
     SqliteAuditLogRepository,
 )
-from taskdog_core.infrastructure.time_provider import SystemTimeProvider  # noqa: E402
+from motion_core.infrastructure.time_provider import SystemTimeProvider  # noqa: E402
 
 # Import server-specific modules
-from taskdog_server.api.context import ApiContext  # noqa: E402
-from taskdog_server.config.server_config_manager import (  # noqa: E402
+from motion_server.api.context import ApiContext  # noqa: E402
+from motion_server.config.server_config_manager import (  # noqa: E402
     ApiKeyEntry,
     AuthConfig,
     ServerConfig,
 )
-from taskdog_server.websocket.connection_manager import ConnectionManager  # noqa: E402
+from motion_server.websocket.connection_manager import ConnectionManager  # noqa: E402
 
 # =============================================================================
 # Repository Fixtures
@@ -262,7 +262,7 @@ def app(
     test_app.state.connection_manager = ConnectionManager()
 
     # Import and register all routers
-    from taskdog_server.api.routers import (
+    from motion_server.api.routers import (
         analytics_router,
         audit_router,
         bulk_router,

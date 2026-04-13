@@ -11,8 +11,8 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
-from taskdog_core.infrastructure.persistence.database.models import Base, TagModel
-from taskdog_core.infrastructure.persistence.mappers.tag_resolver import TagResolver
+from motion_core.infrastructure.persistence.database.models import Base, TagModel
+from motion_core.infrastructure.persistence.mappers.tag_resolver import TagResolver
 
 
 class TestTagResolver:

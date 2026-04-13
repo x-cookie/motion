@@ -6,13 +6,13 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.infrastructure.persistence.database.models import TaskModel
-from taskdog_core.infrastructure.persistence.database.models.task_model import Base
-from taskdog_core.infrastructure.persistence.database.mutation_builders import (
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.infrastructure.persistence.database.models import TaskModel
+from motion_core.infrastructure.persistence.database.models.task_model import Base
+from motion_core.infrastructure.persistence.database.mutation_builders import (
     TaskUpdateBuilder,
 )
-from taskdog_core.infrastructure.persistence.mappers.task_db_mapper import TaskDbMapper
+from motion_core.infrastructure.persistence.mappers.task_db_mapper import TaskDbMapper
 
 
 class TestTaskUpdateBuilder:

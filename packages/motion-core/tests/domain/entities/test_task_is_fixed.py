@@ -2,7 +2,7 @@
 
 import pytest
 
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestTaskIsFixedScheduling:

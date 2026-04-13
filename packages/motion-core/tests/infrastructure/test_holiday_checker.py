@@ -4,7 +4,7 @@ from datetime import date
 
 import pytest
 
-from taskdog_core.infrastructure.holiday_checker import HolidayChecker
+from motion_core.infrastructure.holiday_checker import HolidayChecker
 
 
 class TestHolidayCheckerJapan:

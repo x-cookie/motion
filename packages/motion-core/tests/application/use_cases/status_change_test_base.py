@@ -9,8 +9,8 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_core.domain.exceptions.task_exceptions import (
+from motion_core.domain.entities.task import TaskStatus
+from motion_core.domain.exceptions.task_exceptions import (
     TaskAlreadyFinishedError,
     TaskNotFoundException,
 )

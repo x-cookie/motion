@@ -4,7 +4,7 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.dto.create_task_input import CreateTaskInput
+from motion_core.application.dto.create_task_input import CreateTaskInput
 
 
 class TestCreateTaskInput:

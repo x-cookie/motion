@@ -4,7 +4,7 @@ from datetime import datetime
 from unittest.mock import Mock
 
 import pytest
-from taskdog_client.audit_client import AuditClient
+from motion_client.audit_client import AuditClient
 
 
 class TestAuditClientListAuditLogs:

@@ -4,8 +4,8 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.dto.task_operation_output import TaskOperationOutput
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.application.dto.task_operation_output import TaskOperationOutput
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestTaskOperationOutput:

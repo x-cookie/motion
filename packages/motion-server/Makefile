@@ -1,10 +1,10 @@
 .PHONY: test lint typecheck format
 
-PACKAGE_NAME := taskdog_server
+PACKAGE_NAME := motion_server
 COV_THRESHOLD := 85
 ROOT_DIR ?= ../..
 CONFIG ?= $(ROOT_DIR)/pyproject.toml
-PKG_PATH := packages/taskdog-server
+PKG_PATH := packages/motion-server
 
 test:
 	PYTHONPATH=src uv run python -m pytest tests/ \

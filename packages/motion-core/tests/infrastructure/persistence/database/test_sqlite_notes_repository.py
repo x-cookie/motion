@@ -14,7 +14,7 @@ if str(_tests_path) not in sys.path:
 
 from helpers.time_provider import FakeTimeProvider  # noqa: E402
 
-from taskdog_core.infrastructure.persistence.database.sqlite_notes_repository import (  # noqa: E402
+from motion_core.infrastructure.persistence.database.sqlite_notes_repository import (  # noqa: E402
     MigrationResult,
     SqliteNotesRepository,
 )
@@ -24,7 +24,7 @@ def _create_test_task(engine, task_id: int) -> None:
     """Create a test task with the given ID for foreign key satisfaction."""
     from sqlalchemy.orm import Session
 
-    from taskdog_core.infrastructure.persistence.database.models import TaskModel
+    from motion_core.infrastructure.persistence.database.models import TaskModel
 
     with Session(engine) as session:
         task = TaskModel(

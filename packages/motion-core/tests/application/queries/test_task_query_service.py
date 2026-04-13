@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from taskdog_core.application.queries.task_query_service import TaskQueryService
+from motion_core.application.queries.task_query_service import TaskQueryService
 
 
 class TestTaskQueryService:

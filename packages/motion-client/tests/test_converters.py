@@ -3,7 +3,7 @@
 from datetime import date, datetime
 
 import pytest
-from taskdog_client.converters import (
+from motion_client.converters import (
     ConversionError,
     convert_to_gantt_output,
     convert_to_get_task_by_id_output,
@@ -16,7 +16,7 @@ from taskdog_client.converters import (
     convert_to_update_task_output,
 )
 
-from taskdog_core.domain.entities.task import TaskStatus
+from motion_core.domain.entities.task import TaskStatus
 
 
 class TestConverters:

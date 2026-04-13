@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from taskdog_core.application.dto.update_task_input import UpdateTaskInput
-from taskdog_core.application.use_cases.update_task import UpdateTaskUseCase
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_core.domain.exceptions.task_exceptions import TaskNotFoundException
+from motion_core.application.dto.update_task_input import UpdateTaskInput
+from motion_core.application.use_cases.update_task import UpdateTaskUseCase
+from motion_core.domain.entities.task import TaskStatus
+from motion_core.domain.exceptions.task_exceptions import TaskNotFoundException
 
 
 class TestUpdateTaskUseCase:
@@ -385,8 +385,8 @@ class TestUpdateTaskUseCase:
 
     def test_execute_recalculates_daily_allocations_when_schedule_changes(self):
         """Test that daily_allocations is recalculated when planned_start/end change."""
-        from taskdog_core.application.dto.create_task_input import CreateTaskInput
-        from taskdog_core.application.use_cases.create_task import CreateTaskUseCase
+        from motion_core.application.dto.create_task_input import CreateTaskInput
+        from motion_core.application.use_cases.create_task import CreateTaskUseCase
 
         # Use dynamic future dates (same pattern as other tests in this file)
         base_datetime = datetime.now() + timedelta(days=30)

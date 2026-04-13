@@ -4,10 +4,10 @@ from datetime import date, datetime, timedelta
 
 import pytest
 
-from taskdog_core.application.dto.query_inputs import ListTasksInput
-from taskdog_core.application.queries.task_query_service import TaskQueryService
-from taskdog_core.application.use_cases.list_tasks import ListTasksUseCase
-from taskdog_core.domain.entities.task import TaskStatus
+from motion_core.application.dto.query_inputs import ListTasksInput
+from motion_core.application.queries.task_query_service import TaskQueryService
+from motion_core.application.use_cases.list_tasks import ListTasksUseCase
+from motion_core.domain.entities.task import TaskStatus
 
 
 class TestListTasksUseCase:

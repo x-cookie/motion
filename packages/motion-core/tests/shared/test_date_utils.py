@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 import pytest
 
-from taskdog_core.shared.utils.date_utils import is_weekday
+from motion_core.shared.utils.date_utils import is_weekday
 
 
 class TestWeekdayHelpers:

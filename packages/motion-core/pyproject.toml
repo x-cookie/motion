@@ -1,7 +1,7 @@
 [project]
-name = "taskdog-core"
+name = "motion-core"
 version = "0.18.5"
-description = "Core business logic and infrastructure for Taskdog"
+description = "Core business logic and infrastructure for Motion"
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [
@@ -42,44 +42,44 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = [
-    "taskdog_core",
-    "taskdog_core.domain",
-    "taskdog_core.domain.entities",
-    "taskdog_core.domain.services",
-    "taskdog_core.domain.repositories",
-    "taskdog_core.domain.exceptions",
-    "taskdog_core.application",
-    "taskdog_core.application.dto",
-    "taskdog_core.application.use_cases",
-    "taskdog_core.application.services",
-    "taskdog_core.application.services.optimization",
-    "taskdog_core.application.queries",
-    "taskdog_core.application.queries.filters",
-    "taskdog_core.application.queries.workload",
-    "taskdog_core.application.queries.workload._strategies",
-    "taskdog_core.application.sorters",
-    "taskdog_core.application.validators",
-    "taskdog_core.application.constants",
-    "taskdog_core.application.utils",
-    "taskdog_core.infrastructure",
-    "taskdog_core.infrastructure.persistence",
-    "taskdog_core.infrastructure.persistence.database",
-    "taskdog_core.infrastructure.persistence.database.models",
-    "taskdog_core.infrastructure.persistence.database.query_builders",
-    "taskdog_core.infrastructure.persistence.database.mutation_builders",
-    "taskdog_core.infrastructure.persistence.mappers",
-    "taskdog_core.controllers",
-    "taskdog_core.shared",
-    "taskdog_core.shared.constants",
-    "taskdog_core.shared.utils",
-    "taskdog_core.infrastructure.persistence.database.migrations",
-    "taskdog_core.infrastructure.persistence.database.migrations.versions",
+    "motion_core",
+    "motion_core.domain",
+    "motion_core.domain.entities",
+    "motion_core.domain.services",
+    "motion_core.domain.repositories",
+    "motion_core.domain.exceptions",
+    "motion_core.application",
+    "motion_core.application.dto",
+    "motion_core.application.use_cases",
+    "motion_core.application.services",
+    "motion_core.application.services.optimization",
+    "motion_core.application.queries",
+    "motion_core.application.queries.filters",
+    "motion_core.application.queries.workload",
+    "motion_core.application.queries.workload._strategies",
+    "motion_core.application.sorters",
+    "motion_core.application.validators",
+    "motion_core.application.constants",
+    "motion_core.application.utils",
+    "motion_core.infrastructure",
+    "motion_core.infrastructure.persistence",
+    "motion_core.infrastructure.persistence.database",
+    "motion_core.infrastructure.persistence.database.models",
+    "motion_core.infrastructure.persistence.database.query_builders",
+    "motion_core.infrastructure.persistence.database.mutation_builders",
+    "motion_core.infrastructure.persistence.mappers",
+    "motion_core.controllers",
+    "motion_core.shared",
+    "motion_core.shared.constants",
+    "motion_core.shared.utils",
+    "motion_core.infrastructure.persistence.database.migrations",
+    "motion_core.infrastructure.persistence.database.migrations.versions",
 ]
 package-dir = { "" = "src" }
 
 [tool.setuptools.package-data]
-taskdog_core = ["py.typed"]
-"taskdog_core.infrastructure.persistence.database.migrations" = ["*.mako"]
+motion_core = ["py.typed"]
+"motion_core.infrastructure.persistence.database.migrations" = ["*.mako"]
 
 [tool.mypy]
 python_version = "3.13"

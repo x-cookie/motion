@@ -4,9 +4,9 @@ from datetime import datetime
 
 import pytest
 
-from taskdog_core.application.dto.task_dto import TaskRowDto
-from taskdog_core.application.dto.task_list_output import TaskListOutput
-from taskdog_core.domain.entities.task import TaskStatus
+from motion_core.application.dto.task_dto import TaskRowDto
+from motion_core.application.dto.task_list_output import TaskListOutput
+from motion_core.domain.entities.task import TaskStatus
 
 
 @pytest.fixture

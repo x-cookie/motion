@@ -2,9 +2,9 @@
 
 import pytest
 
-from taskdog_core.application.queries.filters.composite_filter import CompositeFilter
-from taskdog_core.application.queries.filters.task_filter import TaskFilter
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.application.queries.filters.composite_filter import CompositeFilter
+from motion_core.application.queries.filters.task_filter import TaskFilter
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class ConcreteFilter(TaskFilter):

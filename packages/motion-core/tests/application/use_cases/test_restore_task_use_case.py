@@ -2,10 +2,10 @@
 
 import pytest
 
-from taskdog_core.application.dto.base import SingleTaskInput
-from taskdog_core.application.use_cases.restore_task import RestoreTaskUseCase
-from taskdog_core.domain.entities.task import TaskStatus
-from taskdog_core.domain.exceptions.task_exceptions import (
+from motion_core.application.dto.base import SingleTaskInput
+from motion_core.application.use_cases.restore_task import RestoreTaskUseCase
+from motion_core.domain.entities.task import TaskStatus
+from motion_core.domain.exceptions.task_exceptions import (
     TaskNotFoundException,
     TaskValidationError,
 )

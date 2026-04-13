@@ -4,9 +4,9 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from taskdog_core.application.dto.base import SingleTaskInput
-from taskdog_core.application.use_cases.remove_task import RemoveTaskUseCase
-from taskdog_core.domain.exceptions.task_exceptions import TaskNotFoundException
+from motion_core.application.dto.base import SingleTaskInput
+from motion_core.application.use_cases.remove_task import RemoveTaskUseCase
+from motion_core.domain.exceptions.task_exceptions import TaskNotFoundException
 
 
 class TestRemoveTaskUseCase:

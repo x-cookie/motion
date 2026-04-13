@@ -1,5 +1,5 @@
 name: Question
-description: Ask a question about using taskdog
+description: Ask a question about using motion
 title: "[Question]: "
 labels: ["question"]
 body:

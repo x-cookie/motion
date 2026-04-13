@@ -2,9 +2,9 @@
 
 from datetime import date, datetime, timedelta
 
-from taskdog_core.application.dto.query_inputs import ListTasksInput
-from taskdog_core.application.queries.task_filter_builder import TaskFilterBuilder
-from taskdog_core.domain.entities.task import Task, TaskStatus
+from motion_core.application.dto.query_inputs import ListTasksInput
+from motion_core.application.queries.task_filter_builder import TaskFilterBuilder
+from motion_core.domain.entities.task import Task, TaskStatus
 
 
 class TestTaskFilterBuilder:

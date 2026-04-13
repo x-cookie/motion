@@ -2,12 +2,12 @@
 
 import pytest
 
-from taskdog_core.application.dto.base import SingleTaskInput
-from taskdog_core.application.dto.manage_dependencies_input import (
+from motion_core.application.dto.base import SingleTaskInput
+from motion_core.application.dto.manage_dependencies_input import (
     AddDependencyInput,
     RemoveDependencyInput,
 )
-from taskdog_core.application.dto.set_task_tags_input import SetTaskTagsInput
+from motion_core.application.dto.set_task_tags_input import SetTaskTagsInput
 
 
 class TestSimpleTaskManagementInputs:

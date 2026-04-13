@@ -3,9 +3,9 @@
 from unittest.mock import Mock
 
 import pytest
-from taskdog_client.notes_client import NotesClient
+from motion_client.notes_client import NotesClient
 
-from taskdog_core.domain.exceptions.task_exceptions import TaskNotFoundException
+from motion_core.domain.exceptions.task_exceptions import TaskNotFoundException
 
 
 class TestNotesClient:

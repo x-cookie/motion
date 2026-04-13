@@ -5,8 +5,8 @@ This module provides factory classes for creating test data with sensible defaul
 
 from datetime import datetime
 
-from taskdog_core.domain.entities.task import Task, TaskStatus
-from taskdog_core.domain.repositories.task_repository import TaskRepository
+from motion_core.domain.entities.task import Task, TaskStatus
+from motion_core.domain.repositories.task_repository import TaskRepository
 
 
 class TaskFactory:
