@@ -13,7 +13,9 @@ class TestXDGDirectories:
     def test_get_data_home_default(self):
         """Test get_data_home with default XDG_DATA_HOME."""
         # Use patch.dict with clear=True to ensure complete environment isolation
-        with patch.dict(os.environ, {}, clear=True):
+        # but keep USERPROFILE for Windows compatibility
+        env_patches = {"USERPROFILE": str(Path.home())} if os.name == "nt" else {}
+        with patch.dict(os.environ, env_patches, clear=True):
             data_home = XDGDirectories.get_data_home(create=False)
             expected = Path.home() / ".local" / "share" / "taskdog"
             assert data_home == expected
@@ -28,7 +30,9 @@ class TestXDGDirectories:
     def test_get_config_home_default(self):
         """Test get_config_home with default XDG_CONFIG_HOME."""
         # Use patch.dict with clear=True to ensure complete environment isolation
-        with patch.dict(os.environ, {}, clear=True):
+        # but keep USERPROFILE for Windows compatibility
+        env_patches = {"USERPROFILE": str(Path.home())} if os.name == "nt" else {}
+        with patch.dict(os.environ, env_patches, clear=True):
             config_home = XDGDirectories.get_config_home(create=False)
             expected = Path.home() / ".config" / "taskdog"
             assert config_home == expected
