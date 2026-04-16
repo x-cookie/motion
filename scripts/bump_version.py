@@ -18,7 +18,7 @@ ROOT_DIR = Path(__file__).parent.parent
 
 VERSION_PATTERN = re.compile(r'^version\s*=\s*"(\d+\.\d+\.\d+)"', re.MULTILINE)
 DEPENDENCY_PATTERN = re.compile(
-    r"(taskdog-(?:core|client|server|ui|mcp))==(\d+\.\d+\.\d+)"
+    r"(motion-(?:core|client|server|ui|mcp))==(\d+\.\d+\.\d+)"
 )
 SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
 
@@ -66,7 +66,7 @@ def update_pyproject_file(filepath: Path, new_version: str, dry_run: bool) -> li
 
     content = VERSION_PATTERN.sub(replace_version, content)
 
-    # Update taskdog-*==X.Y.Z dependencies
+    # Update motion-*==X.Y.Z dependencies
     def replace_dependency(match: re.Match[str]) -> str:
         pkg_name = match.group(1)
         old_version = match.group(2)
@@ -98,7 +98,7 @@ def verify_no_old_versions(old_version: str) -> list[str]:
             problems.append(f'{relative_path}: version = "{old_version}" still present')
 
         # Check for old version in dependencies
-        old_dep_matches = re.findall(rf"taskdog-\w+=={re.escape(old_version)}", content)
+        old_dep_matches = re.findall(rf"motion-\w+=={re.escape(old_version)}", content)
         for match in old_dep_matches:
             problems.append(f"{relative_path}: {match} still present")
 

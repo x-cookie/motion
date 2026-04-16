@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  motion-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile.demo
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true
+    environment:
+      - MOTION_STORAGE_DATABASE_URL=sqlite:////data/tasks.db
+      - TERM=xterm-256color
+      - COLORTERM=truecolor

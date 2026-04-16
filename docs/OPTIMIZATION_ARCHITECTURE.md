@@ -1,6 +1,6 @@
 # Optimization Architecture
 
-This document describes the architecture of taskdog's task scheduling optimization system.
+This document describes the architecture of Motion's task scheduling optimization system.
 
 ## Table of Contents
 
@@ -118,7 +118,7 @@ class OptimizeResult:
 
 ### OptimizationStrategy (Abstract Base Class)
 
-**Location:** `packages/taskdog-core/src/taskdog_core/application/services/optimization/optimization_strategy.py`
+**Location:** `packages/motion-core/src/motion_core/application/services/optimization/optimization_strategy.py`
 
 **Responsibilities:**
 
@@ -142,7 +142,7 @@ def optimize_tasks(
 
 ### GreedyBasedOptimizationStrategy (Template Method Base Class)
 
-**Location:** `packages/taskdog-core/src/taskdog_core/application/services/optimization/greedy_based_optimization_strategy.py`
+**Location:** `packages/motion-core/src/motion_core/application/services/optimization/greedy_based_optimization_strategy.py`
 
 **Responsibilities:**
 
@@ -161,7 +161,7 @@ def _sort_tasks(self, tasks: list[Task], start_date: datetime) -> list[Task]:
 
 ### Allocation Helpers (Module Functions)
 
-**Location:** `packages/taskdog-core/src/taskdog_core/application/services/optimization/allocation_helpers.py`
+**Location:** `packages/motion-core/src/motion_core/application/services/optimization/allocation_helpers.py`
 
 **Functions:**
 
@@ -173,13 +173,13 @@ def _sort_tasks(self, tasks: list[Task], start_date: datetime) -> list[Task]:
 
 ### OptimizeParams (Input DTO)
 
-**Location:** `packages/taskdog-core/src/taskdog_core/application/dto/optimize_params.py`
+**Location:** `packages/motion-core/src/motion_core/application/dto/optimize_params.py`
 
 Contains optimization constraints passed from UseCase to Strategy.
 
 ### OptimizeResult (Output DTO)
 
-**Location:** `packages/taskdog-core/src/taskdog_core/application/dto/optimize_result.py`
+**Location:** `packages/motion-core/src/motion_core/application/dto/optimize_result.py`
 
 Contains optimization results including scheduled tasks, allocations, and failures.
 
@@ -191,7 +191,7 @@ result.record_allocation_failure(task)  # Records failure with generic message
 
 ### StrategyFactory
 
-**Location:** `packages/taskdog-core/src/taskdog_core/application/services/optimization/strategy_factory.py`
+**Location:** `packages/motion-core/src/motion_core/application/services/optimization/strategy_factory.py`
 
 Creates strategy instances by name:
 
@@ -205,7 +205,7 @@ Supported algorithms: `greedy`, `balanced`, `backward`, `priority_first`, `earli
 
 ### OptimizeScheduleUseCase
 
-**Location:** `packages/taskdog-core/src/taskdog_core/application/use_cases/optimize_schedule.py`
+**Location:** `packages/motion-core/src/motion_core/application/use_cases/optimize_schedule.py`
 
 Entry point that:
 
@@ -476,7 +476,7 @@ for task in sorted_tasks:
 
 ## Helper Functions
 
-**Location:** `packages/taskdog-core/src/taskdog_core/application/services/optimization/allocation_helpers.py`
+**Location:** `packages/motion-core/src/motion_core/application/services/optimization/allocation_helpers.py`
 
 ### `prepare_task_for_allocation()`
 
@@ -564,7 +564,7 @@ if effective_deadline and current_date > effective_deadline:
 1. **Create strategy class** (inherit from existing strategy or base class):
 
 ```python
-from taskdog_core.application.services.optimization.greedy_based_optimization_strategy import (
+from motion_core.application.services.optimization.greedy_based_optimization_strategy import (
     GreedyBasedOptimizationStrategy,
 )
 
@@ -582,7 +582,7 @@ class MyCustomOptimizationStrategy(GreedyBasedOptimizationStrategy):
 2. **Register in StrategyFactory**:
 
 ```python
-# packages/taskdog-core/src/taskdog_core/application/services/optimization/strategy_factory.py
+# packages/motion-core/src/motion_core/application/services/optimization/strategy_factory.py
 STRATEGIES = {
     ...
     "my_custom": MyCustomOptimizationStrategy,
@@ -609,7 +609,7 @@ class TestMyCustomOptimizationStrategy(BaseOptimizationStrategyTest):
 **Best practice:** Always use helper functions from `allocation_helpers.py` to avoid code duplication:
 
 ```python
-from taskdog_core.application.services.optimization.allocation_helpers import (
+from motion_core.application.services.optimization.allocation_helpers import (
     calculate_available_hours,
     prepare_task_for_allocation,
     set_planned_times,

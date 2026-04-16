@@ -1,20 +1,20 @@
 # Configuration Examples
 
-This directory contains example configuration files for Taskdog.
+This directory contains example configuration files for Motion.
 
 For comprehensive configuration documentation, see [docs/CONFIGURATION.md](../docs/CONFIGURATION.md).
 
 ## Configuration Files
 
-Taskdog uses **separate configuration files** for clear separation of concerns:
+Motion uses **separate configuration files** for clear separation of concerns:
 
 ### 1. `core.toml` - Core Configuration
 
 **Purpose**: Business logic settings
 
-**Used by**: `taskdog-server` (API server)
+**Used by**: `motion-server` (API server)
 
-**Location**: `~/.config/taskdog/core.toml`
+**Location**: `~/.config/motion/core.toml`
 
 **Contains**:
 
@@ -30,9 +30,9 @@ Taskdog uses **separate configuration files** for clear separation of concerns:
 
 **Purpose**: CLI/TUI infrastructure settings
 
-**Used by**: `taskdog` (CLI) and `taskdog tui` (TUI)
+**Used by**: `motion` (CLI) and `motion tui` (TUI)
 
-**Location**: `~/.config/taskdog/cli.toml`
+**Location**: `~/.config/motion/cli.toml`
 
 **Contains**:
 
@@ -46,9 +46,9 @@ Taskdog uses **separate configuration files** for clear separation of concerns:
 
 **Purpose**: MCP server settings for Claude Desktop integration
 
-**Used by**: `taskdog-mcp` (MCP server)
+**Used by**: `motion-mcp` (MCP server)
 
-**Location**: `~/.config/taskdog/mcp.toml`
+**Location**: `~/.config/motion/mcp.toml`
 
 **Contains**:
 
@@ -63,14 +63,14 @@ Taskdog uses **separate configuration files** for clear separation of concerns:
 
 ### Default Setup (Recommended)
 
-If you don't create any config files, Taskdog uses sensible defaults:
+If you don't create any config files, Motion uses sensible defaults:
 
 ```bash
 # Start server with defaults
-taskdog-server  # Listens on 127.0.0.1:8000
+motion-server  # Listens on 127.0.0.1:8000
 
 # Use CLI with defaults
-taskdog table   # Connects to 127.0.0.1:8000
+motion table   # Connects to 127.0.0.1:8000
 ```
 
 No configuration needed!
@@ -80,26 +80,26 @@ No configuration needed!
 1. **Copy example files**:
 
    ```bash
-   mkdir -p ~/.config/taskdog
-   cp examples/core.toml ~/.config/taskdog/
-   cp examples/cli.toml ~/.config/taskdog/
-   cp examples/mcp.toml ~/.config/taskdog/  # For MCP/Claude Desktop
+   mkdir -p ~/.config/motion
+   cp examples/core.toml ~/.config/motion/
+   cp examples/cli.toml ~/.config/motion/
+   cp examples/mcp.toml ~/.config/motion/  # For MCP/Claude Desktop
    ```
 
 2. **Edit as needed**:
 
    ```bash
    # Core config (business logic)
-   $EDITOR ~/.config/taskdog/core.toml
+   $EDITOR ~/.config/motion/core.toml
 
    # CLI config (API connection)
-   $EDITOR ~/.config/taskdog/cli.toml
+   $EDITOR ~/.config/motion/cli.toml
    ```
 
 3. **Restart server** (if core.toml changed):
 
    ```bash
-   systemctl --user restart taskdog-server
+   systemctl --user restart motion-server
    ```
 
 ## Configuration File Relationship
@@ -112,8 +112,8 @@ No configuration needed!
          │ Uses                       │ Uses                   │ Uses
          ▼                            ▼                        ▼
 ┌─────────────────────┐    ┌─────────────────────┐    ┌─────────────────────┐
-│   taskdog (CLI)     │    │  taskdog-server     │    │   taskdog-mcp       │
-│   taskdog tui (TUI) │───►│  (API Server)       │◄───│   (MCP Server)      │
+│   motion (CLI)      │    │  motion-server      │    │   motion-mcp        │
+│   motion tui (TUI)  │───►│  (API Server)       │◄───│   (MCP Server)      │
 └─────────────────────┘HTTP└─────────────────────┘HTTP└─────────────────────┘
          │                       │         │                   │
          │ Reads                 │ Reads   │ Reads             │ Reads
@@ -156,13 +156,13 @@ This separation provides several benefits:
 **No config files needed!**
 
 ```bash
-taskdog-server  # Uses defaults
-taskdog table   # Uses defaults
+motion-server  # Uses defaults
+motion table   # Uses defaults
 ```
 
 ### Scenario 2: Custom Server Port
 
-**Core** (`~/.config/taskdog/core.toml`):
+**Core** (`~/.config/motion/core.toml`):
 
 ```toml
 [api]
@@ -170,7 +170,7 @@ enabled = true
 port = 3000
 ```
 
-**CLI** (`~/.config/taskdog/cli.toml`):
+**CLI** (`~/.config/motion/cli.toml`):
 
 ```toml
 [api]
@@ -208,7 +208,7 @@ country = "US"  # Use US holidays
 CLI needs no changes - it automatically uses server's settings. Use `--max-hours-per-day` and `--algorithm` options when running the optimize command:
 
 ```bash
-taskdog optimize --max-hours-per-day 8 --algorithm balanced
+motion optimize --max-hours-per-day 8 --algorithm balanced
 ```
 
 ## Environment Variables
@@ -218,9 +218,9 @@ Both configs support environment variable overrides:
 ### CLI (`cli.toml`)
 
 ```bash
-export TASKDOG_API_HOST=192.168.1.100
-export TASKDOG_API_PORT=3000
-taskdog table
+export MOTION_API_HOST=192.168.1.100
+export MOTION_API_PORT=3000
+motion table
 ```
 
 ### Core (`core.toml`)
@@ -228,7 +228,7 @@ taskdog table
 No environment variables currently supported. Use config file or command-line args:
 
 ```bash
-taskdog-server --host 0.0.0.0 --port 3000
+motion-server --host 0.0.0.0 --port 3000
 ```
 
 ## Migration from Old Single-Config Setup
@@ -249,14 +249,14 @@ The old single-config approach still works for the server. CLI just gained its o
 
 **Check**:
 
-1. Is server running? `systemctl --user status taskdog-server`
-2. Check CLI config: `cat ~/.config/taskdog/cli.toml`
-3. Check core config: `cat ~/.config/taskdog/core.toml`
+1. Is server running? `systemctl --user status motion-server`
+2. Check CLI config: `cat ~/.config/motion/cli.toml`
+3. Check core config: `cat ~/.config/motion/core.toml`
 4. Test connection: `curl http://127.0.0.1:8000/health`
 
 **Common fixes**:
 
-- Start server: `systemctl --user start taskdog-server`
+- Start server: `systemctl --user start motion-server`
 - Match ports in both configs
 - Use `127.0.0.1` (not `0.0.0.0`) in CLI config
 
@@ -277,11 +277,11 @@ The old single-config approach still works for the server. CLI just gained its o
 **Check**:
 
 1. Are you editing the right file? Server uses `core.toml`, not `cli.toml`
-2. Did you restart server? `systemctl --user restart taskdog-server`
-3. Check file location: `~/.config/taskdog/core.toml`
+2. Did you restart server? `systemctl --user restart motion-server`
+3. Check file location: `~/.config/motion/core.toml`
 
 ## See Also
 
-- [CLI Configuration Documentation](../packages/taskdog-ui/CLI_CONFIG.md)
+- [CLI Configuration Documentation](../packages/motion-ui/CLI_CONFIG.md)
 - [Main README](../README.md)
 - [Architecture Documentation](../CLAUDE.md)

@@ -1,0 +1,112 @@
+[project]
+name = "motion-core"
+version = "0.18.5"
+description = "Core business logic and infrastructure for Motion"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "Kohei Wada" }
+]
+license = { text = "MIT" }
+keywords = ["task", "management", "scheduling"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "alembic>=1.13.0",
+    "holidays>=0.60.0",
+    "sqlalchemy>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "mypy>=1.0.0",
+    "ruff>=0.7.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/cookie-may/motion"
+Repository = "https://github.com/cookie-may/motion"
+"Bug Tracker" = "https://github.com/cookie-may/motion/issues"
+
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = [
+    "motion_core",
+    "motion_core.domain",
+    "motion_core.domain.entities",
+    "motion_core.domain.services",
+    "motion_core.domain.repositories",
+    "motion_core.domain.exceptions",
+    "motion_core.application",
+    "motion_core.application.dto",
+    "motion_core.application.use_cases",
+    "motion_core.application.services",
+    "motion_core.application.services.optimization",
+    "motion_core.application.queries",
+    "motion_core.application.queries.filters",
+    "motion_core.application.queries.workload",
+    "motion_core.application.queries.workload._strategies",
+    "motion_core.application.sorters",
+    "motion_core.application.validators",
+    "motion_core.application.constants",
+    "motion_core.application.utils",
+    "motion_core.infrastructure",
+    "motion_core.infrastructure.persistence",
+    "motion_core.infrastructure.persistence.database",
+    "motion_core.infrastructure.persistence.database.models",
+    "motion_core.infrastructure.persistence.database.query_builders",
+    "motion_core.infrastructure.persistence.database.mutation_builders",
+    "motion_core.infrastructure.persistence.mappers",
+    "motion_core.controllers",
+    "motion_core.shared",
+    "motion_core.shared.constants",
+    "motion_core.shared.utils",
+    "motion_core.infrastructure.persistence.database.migrations",
+    "motion_core.infrastructure.persistence.database.migrations.versions",
+]
+package-dir = { "" = "src" }
+
+[tool.setuptools.package-data]
+motion_core = ["py.typed"]
+"motion_core.infrastructure.persistence.database.migrations" = ["*.mako"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+# Disable unused-ignore warnings (SQLAlchemy attr-defined errors are environment-dependent)
+warn_unused_ignores = false
+
+[[tool.mypy.overrides]]
+module = "alembic.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+omit = [
+    "*/migrations/*",
+    "*/migrations/versions/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "@abstractmethod",
+]

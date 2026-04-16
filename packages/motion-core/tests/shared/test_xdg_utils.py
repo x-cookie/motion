@@ -1,0 +1,56 @@
+"""Tests for XDG Base Directory utilities."""
+
+import os
+from pathlib import Path
+from unittest.mock import patch
+
+from motion_core.shared.xdg_utils import XDGDirectories
+
+
+class TestXDGDirectories:
+    """Test cases for XDGDirectories class."""
+
+    def test_get_data_home_default(self):
+        """Test get_data_home with default XDG_DATA_HOME."""
+        # Use patch.dict with clear=True to ensure complete environment isolation
+        # but keep USERPROFILE for Windows compatibility
+        env_patches = {"USERPROFILE": str(Path.home())} if os.name == "nt" else {}
+        with patch.dict(os.environ, env_patches, clear=True):
+            data_home = XDGDirectories.get_data_home(create=False)
+            expected = Path.home() / ".local" / "share" / "motion"
+            assert data_home == expected
+
+    def test_get_data_home_custom(self):
+        """Test get_data_home with custom XDG_DATA_HOME."""
+        with patch.dict(os.environ, {"XDG_DATA_HOME": "/tmp/test_data"}):
+            data_home = XDGDirectories.get_data_home(create=False)
+            expected = Path("/tmp/test_data/motion")
+            assert data_home == expected
+
+    def test_get_config_home_default(self):
+        """Test get_config_home with default XDG_CONFIG_HOME."""
+        # Use patch.dict with clear=True to ensure complete environment isolation
+        # but keep USERPROFILE for Windows compatibility
+        env_patches = {"USERPROFILE": str(Path.home())} if os.name == "nt" else {}
+        with patch.dict(os.environ, env_patches, clear=True):
+            config_home = XDGDirectories.get_config_home(create=False)
+            expected = Path.home() / ".config" / "motion"
+            assert config_home == expected
+
+    def test_get_config_home_custom(self):
+        """Test get_config_home with custom XDG_CONFIG_HOME."""
+        with patch.dict(os.environ, {"XDG_CONFIG_HOME": "/tmp/test_config"}):
+            config_home = XDGDirectories.get_config_home(create=False)
+            expected = Path("/tmp/test_config/motion")
+            assert config_home == expected
+
+    def test_get_config_file(self):
+        """Test get_config_file returns correct path."""
+        with patch.dict(os.environ, {"XDG_CONFIG_HOME": "/tmp/test_config"}):
+            config_file = XDGDirectories.get_config_file()
+            expected = Path("/tmp/test_config/motion/core.toml")
+            assert config_file == expected
+
+    def test_app_name_constant(self):
+        """Test APP_NAME constant is set correctly."""
+        assert XDGDirectories.APP_NAME == "motion"

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Demo data script for Taskdog - creates sample tasks via REST API.
+"""Demo data script for motion - creates sample tasks via REST API.
 
 This script creates ~50 sample tasks with realistic deadlines, estimates,
 tags, dependencies, and notes. It uses the REST API directly for better
@@ -22,7 +22,7 @@ Usage:
     python demo_data.py [--api-key KEY] [--no-confirm] [--workers N]
 
 Requirements:
-    - taskdog-server must be running (default: http://127.0.0.1:8000)
+    - motion-server must be running (default: http://127.0.0.1:8000)
     - Python 3.9+ (uses standard library only)
 """
 
@@ -49,8 +49,8 @@ SCRIPT_DIR = Path(__file__).parent
 DATA_FILE = SCRIPT_DIR / "demo_data.json"
 
 
-class TaskdogAPIClient:
-    """REST API client for Taskdog server using urllib."""
+class motionAPIClient:
+    """REST API client for motion server using urllib."""
 
     def __init__(
         self, base_url: str = "http://127.0.0.1:8000", api_key: str | None = None
@@ -219,7 +219,7 @@ class DemoDataCreator:
 
     def __init__(
         self,
-        client: TaskdogAPIClient,
+        client: motionAPIClient,
         loader: DemoDataLoader,
         max_workers: int = 5,
     ):
@@ -468,23 +468,23 @@ class DemoDataCreator:
         print(f"  • {pending} pending tasks")
         print()
         print(f"{BLUE}Useful commands:{NC}")
-        print("  taskdog table          - View all tasks")
-        print("  taskdog gantt          - View Gantt chart")
-        print("  taskdog today          - View today's tasks")
-        print("  taskdog show <ID>      - View task details with notes")
-        print("  taskdog optimize       - Auto-schedule tasks")
-        print("  taskdog tui            - Open interactive TUI")
+        print("  motion table          - View all tasks")
+        print("  motion gantt          - View Gantt chart")
+        print("  motion today          - View today's tasks")
+        print("  motion show <ID>      - View task details with notes")
+        print("  motion optimize       - Auto-schedule tasks")
+        print("  motion tui            - Open interactive TUI")
 
 
 def main() -> int:
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="Create demo data for Taskdog via REST API"
+        description="Create demo data for motion via REST API"
     )
     parser.add_argument(
         "--api-url",
         default=None,
-        help="Taskdog API server URL (overrides --host and --port)",
+        help="motion API server URL (overrides --host and --port)",
     )
     parser.add_argument(
         "--host",
@@ -528,18 +528,18 @@ def main() -> int:
     api_url = args.api_url or f"http://{args.host}:{args.port}"
 
     # Initialize client
-    client = TaskdogAPIClient(api_url, api_key=args.api_key)
+    client = motionAPIClient(api_url, api_key=args.api_key)
 
     # Check server health
     if not client.health_check():
-        print(f"{RED}Error: taskdog-server is not running at {api_url}{NC}")
-        print("Please start the server with: taskdog-server")
-        print("Or: systemctl --user start taskdog-server")
+        print(f"{RED}Error: motion-server is not running at {api_url}{NC}")
+        print("Please start the server with: motion-server")
+        print("Or: systemctl --user start motion-server")
         return 1
 
     # Print banner
     print(f"{BLUE}{'═' * 55}{NC}")
-    print(f"{BLUE}  Taskdog Demo Data Script{NC}")
+    print(f"{BLUE}  motion Demo Data Script{NC}")
     print(f"{BLUE}{'═' * 55}{NC}")
     print()
     print("This will create ~50 sample tasks with:")

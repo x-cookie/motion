@@ -1,6 +1,6 @@
-# Contributing to Taskdog
+# Contributing to Motion
 
-Thank you for your interest in contributing to Taskdog! We welcome contributions of all kinds, including:
+Thank you for your interest in contributing to Motion! We welcome contributions of all kinds, including:
 
 - Bug reports and fixes
 - Feature requests and implementations
@@ -23,8 +23,8 @@ This guide will help you get started with contributing to the project.
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/Kohei-Wada/taskdog.git
-cd taskdog
+git clone https://github.com/cookie-may/motion.git
+cd motion
 ```
 
 2. **Install with development dependencies:**
@@ -62,25 +62,25 @@ make install
 
 ## Project Structure
 
-Taskdog is a **UV workspace monorepo** with three packages:
+Motion is a **UV workspace monorepo** with three packages:
 
 ```text
-taskdog/
+motion/
 ├── packages/
-│   ├── taskdog-core/      # Core business logic and infrastructure
-│   │   ├── src/taskdog_core/
+│   ├── motion-core/      # Core business logic and infrastructure
+│   │   ├── src/motion_core/
 │   │   │   ├── domain/           # Entities, services, exceptions
 │   │   │   ├── application/      # Use cases, queries, DTOs, validators
 │   │   │   ├── infrastructure/   # SQLite repository, config
 │   │   │   └── controllers/      # CRUD, Lifecycle, Relationship, Analytics, Query controllers
 │   │   └── tests/
-│   ├── taskdog-server/    # FastAPI REST API server
-│   │   ├── src/taskdog_server/
+│   ├── motion-server/    # FastAPI REST API server
+│   │   ├── src/motion_server/
 │   │   │   ├── api/              # Routers, models, dependencies
 │   │   │   └── main.py           # FastAPI application
 │   │   └── tests/
-│   └── taskdog-ui/        # CLI and TUI interfaces
-│       ├── src/taskdog/
+│   └── motion-ui/        # CLI and TUI interfaces
+│       ├── src/motion/
 │       │   ├── cli/              # Click commands
 │       │   ├── tui/              # Textual TUI
 │       │   ├── console/          # Output formatters
@@ -93,19 +93,19 @@ taskdog/
 
 ### Package Dependencies
 
-- **taskdog-core**: No dependencies on other packages (pure business logic)
-- **taskdog-server**: Depends on `taskdog-core` (direct access to controllers and repository)
-- **taskdog-ui**: Depends on `taskdog-core` (for DTOs and types; accesses data via HTTP API)
+- **motion-core**: No dependencies on other packages (pure business logic)
+- **motion-server**: Depends on `motion-core` (direct access to controllers and repository)
+- **motion-ui**: Depends on `motion-core` (for DTOs and types; accesses data via HTTP API)
 
 ### Communication Flow
 
 ```text
-CLI/TUI (taskdog-ui) → HTTP API → FastAPI (taskdog-server) → Controllers/Repository (taskdog-core)
+CLI/TUI (motion-ui) → HTTP API → FastAPI (motion-server) → Controllers/Repository (motion-core)
 ```
 
 ### Architecture
 
-Taskdog follows **Clean Architecture** principles. For detailed architecture documentation, see [CLAUDE.md](CLAUDE.md).
+Motion follows **Clean Architecture** principles. For detailed architecture documentation, see [CLAUDE.md](CLAUDE.md).
 
 ## Coding Standards
 
@@ -177,10 +177,10 @@ make test-ui
 # All test commands include coverage (sorted by coverage: low → high)
 
 # Run single test file (from package directory)
-cd packages/taskdog-core && PYTHONPATH=src uv run python -m unittest tests/test_module.py
+cd packages/motion-core && PYTHONPATH=src uv run python -m unittest tests/test_module.py
 
 # Run specific test method
-cd packages/taskdog-core && PYTHONPATH=src uv run python -m unittest tests.test_module.TestClass.test_method
+cd packages/motion-core && PYTHONPATH=src uv run python -m unittest tests.test_module.TestClass.test_method
 ```
 
 ### Coverage Requirements
@@ -229,9 +229,9 @@ chore: Update dependencies to latest versions
 
 ```bash
 # Fork the repository on GitHub
-git clone https://github.com/YOUR_USERNAME/taskdog.git
-cd taskdog
-git remote add upstream https://github.com/Kohei-Wada/taskdog.git
+git clone https://github.com/YOUR_USERNAME/motion.git
+cd motion
+git remote add upstream https://github.com/cookie-may/motion.git
 ```
 
 ### 2. Create a Feature Branch
@@ -311,17 +311,17 @@ When working on a specific package:
 
 ```bash
 # Core package
-cd packages/taskdog-core
+cd packages/motion-core
 make install-core
 make test-core
 
 # Server package
-cd packages/taskdog-server
+cd packages/motion-server
 make install-server
 make test-server
 
 # UI package
-cd packages/taskdog-ui
+cd packages/motion-ui
 make install-ui
 make test-ui
 ```
@@ -330,17 +330,17 @@ make test-ui
 
 ```bash
 # Run CLI without installation
-cd packages/taskdog-ui
-PYTHONPATH=src uv run python -m taskdog.cli_main --help
+cd packages/motion-ui
+PYTHONPATH=src uv run python -m motion.cli_main --help
 
 # Run server without installation
-cd packages/taskdog-server
-PYTHONPATH=src uv run python -m taskdog_server.main --help
+cd packages/motion-server
+PYTHONPATH=src uv run python -m motion_server.main --help
 ```
 
 ## Design Philosophy
 
-Before adding new features, please review [DESIGN_PHILOSOPHY.md](docs/DESIGN_PHILOSOPHY.md). This document explains why Taskdog focuses on individual task management with flat task structures, and includes guidelines for evaluating new feature proposals.
+Before adding new features, please review [DESIGN_PHILOSOPHY.md](docs/DESIGN_PHILOSOPHY.md). This document explains why Motion focuses on individual task management with flat task structures, and includes guidelines for evaluating new feature proposals.
 
 ## Questions and Support
 
@@ -375,7 +375,7 @@ We are committed to providing a welcoming and inclusive environment for all cont
 
 ## License
 
-By contributing to Taskdog, you agree that your contributions will be licensed under the MIT License.
+By contributing to Motion, you agree that your contributions will be licensed under the MIT License.
 
 ## Additional Resources
 
@@ -387,4 +387,4 @@ By contributing to Taskdog, you agree that your contributions will be licensed u
 
 ---
 
-Thank you for contributing to Taskdog! 🐕
+Thank you for contributing to Motion! 🚀

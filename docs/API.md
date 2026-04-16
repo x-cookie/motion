@@ -1,6 +1,6 @@
 # API Reference
 
-Complete reference for the Taskdog REST API.
+Complete reference for the Motion REST API.
 
 ## Table of Contents
 
@@ -20,15 +20,15 @@ Complete reference for the Taskdog REST API.
 
 ## Getting Started
 
-The Taskdog API server provides a comprehensive REST API built with FastAPI. All endpoints return JSON and follow REST conventions.
+The Motion API server provides a comprehensive REST API built with FastAPI. All endpoints return JSON and follow REST conventions.
 
 ### Starting the Server
 
 ```bash
-taskdog-server                           # Default: http://127.0.0.1:8000
-taskdog-server --host 0.0.0.0            # Bind to all interfaces
-taskdog-server --port 3000               # Custom port
-taskdog-server --reload                  # Auto-reload for development
+motion-server                           # Default: http://127.0.0.1:8000
+motion-server --host 0.0.0.0            # Bind to all interfaces
+motion-server --port 3000               # Custom port
+motion-server --reload                  # Auto-reload for development
 ```
 
 ### Interactive Documentation
@@ -40,14 +40,14 @@ Once the server is running, access interactive API documentation:
 
 ## Authentication
 
-Taskdog API supports optional API key authentication. When enabled, all HTTP endpoints and WebSocket connections require authentication.
+Motion API supports optional API key authentication. When enabled, all HTTP endpoints and WebSocket connections require authentication.
 
 ### Configuration
 
 Authentication is configured in `server.toml`:
 
 ```toml
-# ~/.config/taskdog/server.toml
+# ~/.config/motion/server.toml
 [auth]
 enabled = true  # Enable/disable authentication (default: true)
 
@@ -79,13 +79,13 @@ const ws = new WebSocket('ws://localhost:8000/ws?token=your-secret-key');
 Configure API key in `cli.toml` or environment variable:
 
 ```toml
-# ~/.config/taskdog/cli.toml
+# ~/.config/motion/cli.toml
 [api]
 api_key = "your-secret-key"
 ```
 
 ```bash
-export TASKDOG_API_KEY=your-secret-key
+export MOTION_API_KEY=your-secret-key
 ```
 
 ### Disabling Authentication
@@ -93,7 +93,7 @@ export TASKDOG_API_KEY=your-secret-key
 For local development or trusted networks, you can disable authentication:
 
 ```toml
-# ~/.config/taskdog/server.toml
+# ~/.config/motion/server.toml
 [auth]
 enabled = false
 ```
@@ -679,4 +679,4 @@ done
 
 ## Rate Limiting
 
-Currently, Taskdog API does not implement rate limiting as it's designed for local use. For production deployments, consider adding rate limiting middleware.
+Currently, Motion API does not implement rate limiting as it's designed for local use. For production deployments, consider adding rate limiting middleware.

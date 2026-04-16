@@ -1,19 +1,19 @@
 #!/bin/bash
 set -e
 
-# Start taskdog-server in background
-taskdog-server --host 0.0.0.0 --port 8000 > /dev/null 2>&1 &
+# Start motion-server in background
+motion-server --host 0.0.0.0 --port 8000 > /dev/null 2>&1 &
 SERVER_PID=$!
 
 # Check if process is still running
 sleep 0.5
 if ! kill -0 $SERVER_PID 2>/dev/null; then
-    echo "ERROR: taskdog-server failed to start"
+    echo "ERROR: motion-server failed to start"
     exit 1
 fi
 
 # Wait for server to be ready
-echo "Starting taskdog-server..."
+echo "Starting motion-server..."
 for i in $(seq 1 30); do
     if python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" 2>/dev/null; then
         break
@@ -31,10 +31,10 @@ python scripts/demo_data.py -y
 
 if [ -t 0 ]; then
     # Interactive mode: launch TUI
-    exec taskdog tui
+    exec motion tui
 else
     # Detached mode: keep server running
     echo "Server ready at http://localhost:8000"
-    echo "Connect with: uvx --from taskdog-ui taskdog tui"
+    echo "Connect with: uvx --from motion-ui motion tui"
     wait $SERVER_PID
 fi
